@@ -1,1 +1,47 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>290</x><y>180</y><w>220</w><h>150</h></coordinates><panel_attributes>SimpleClass</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>480</x><y>210</y><w>220</w><h>200</h></coordinates><panel_attributes>Game
+--
+-bird: Bird
+-obstacles:  Obstacles[]
+-isPaused: bool
+-isOver: bool
+-score: int
+--
++SetUp()
++Run()
++Pause()
++CheckCollision()
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>480</y><w>220</w><h>200</h></coordinates><panel_attributes>Board
+--
+-height: int
+-width: int
+
+
+
+--
++DrawBoard()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>300</y><w>220</w><h>150</h></coordinates><panel_attributes>Obstacle
+--
+-width: int
+-height: int
+-positionX: 
+
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>90</y><w>220</w><h>150</h></coordinates><panel_attributes>Bird
+--
+-x: int
+-y: int
+-fallSpeed: int
+--
++Jump()
++Fall();
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>0</y><w>220</w><h>160</h></coordinates><panel_attributes>Menu
+--
+
+
+--
++StartGame()
++ShowHighScores()
++Exit()
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
