@@ -1,13 +1,25 @@
 ﻿using System;
+using System.Threading;
 
 namespace FlappyBird
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            //Setting up Github
+            Board board = new Board();
+
+            bool gameIsRunning = true;
+            while (gameIsRunning)
+            {
+                //Game.Run();
+                Console.Clear();
+                board.DrawBoard();
+                Thread.Sleep(500);
+            }
+
+            Console.ReadKey();
         }
+
     }
 }
