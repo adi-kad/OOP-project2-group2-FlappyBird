@@ -6,33 +6,34 @@ namespace FlappyBird
 {
     class Bird
     {
-        public int x;
-        public int y;
-        int fallSpeed;
+        public int X;
+        public int Y;
 
         public Bird(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
 
         public Bird()
         {
-            this.x = 25;
-            this.y = 15;
+            X = 25;
+            Y = 5;
         }
 
         public void Jump() 
         {
+            Y--;
         }
 
         public void Fall() 
         {
+            Y++;
         }
     
         public void DrawBird()
         {
-            Console.SetCursorPosition(this.x, this.y);
+            Console.SetCursorPosition(X, Y);
             Console.WriteLine("<>?<>");
         }
 
