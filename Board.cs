@@ -2,66 +2,48 @@
 
 namespace FlappyBird
 {
-    partial class Program
+    class Board /*: Game*/
     {
-        class Board
+        int height;
+        private int width = Console.WindowWidth;
+
+
+        public Board()
         {
-            int height;
-            int width;
-            Bird bird;
+            this.height = 25;
+        }
 
-            public Board()
+        public Board(int height, int width)
+        {
+            this.height = height;
+            this.width = width;
+        }
+
+        public void Draw(Bird bird)
+        {
+            bird.DrawBird();
+        }
+
+        //public void Draw(Obstacle obstacle)
+        //{
+
+        //}
+
+        public void DrawBoard()
+        {            
+            for (int i = 0; i < width; i++)
             {
-                this.height = 30;
-                this.width = 100;
-                this.bird = new Bird();
+                Console.SetCursorPosition(i, 0);
+                Console.Write("_");
             }
 
-            public Board(int height, int width)
+            for (int i = 0; i < width; i++)
             {
-                this.height = height;
-                this.width = width;
-            }
-
-            public void DrawBoard()
-            {
-
-                for (int x = 0; x < width; x++)
-                {
-                    
-                    if (x == width-1)
-                    {
-                        Console.WriteLine("─");
-                    }
-                    else { 
-                        Console.Write("─"); 
-                    }
-                    
-                }
-
-                for (int y = 0; y < height; y++)
-                {
-                    bird.DrawBird();
-                }
-
-
-                for (int x = 0; x < width; x++)
-                {
-
-                    if (x == width - 1)
-                    {
-                        Console.WriteLine("─");
-                    }
-                    else
-                    {
-                        Console.Write("─");
-                    }
-
-                }
-             
+                Console.SetCursorPosition(i, height);
+                Console.Write("_");
             }
 
         }
-
+      
     }
 }

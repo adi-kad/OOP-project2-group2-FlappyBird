@@ -7,18 +7,18 @@ namespace FlappyBird
     {
         static void Main(string[] args)
         {
-            Board board = new Board();
+            //Menu menu = new Menu();
+            //menu.StartMenu();
 
-            bool gameIsRunning = true;
-            while (gameIsRunning)
+            Game game = new Game();
+            game.SetUp();
+
+            while (!game.isOver)
             {
-                //Game.Run();
-                Console.Clear();
-                board.DrawBoard();
-                Thread.Sleep(500);
+                game.Run();
             }
 
-            Console.ReadKey();
+            Console.Clear();
         }
 
     }
