@@ -2,11 +2,12 @@
 
 namespace FlappyBird
 {
-    class Board
+    class Board /*: Game*/
     {
         int height;
-        int width = Console.WindowWidth;
-        
+        private int width = Console.WindowWidth;
+
+
         public Board()
         {
             this.height = 25;
@@ -17,6 +18,16 @@ namespace FlappyBird
             this.height = height;
             this.width = width;
         }
+
+        public void Draw(Bird bird)
+        {
+            bird.DrawBird();
+        }
+
+        //public void Draw(Obstacle obstacle)
+        //{
+
+        //}
 
         public void DrawBoard()
         {            

@@ -40,24 +40,24 @@ namespace FlappyBird
             Console.WriteLine("<>?<>");
         }
 
-        public void CheckKeyPress()
-        {
-            if (Console.KeyAvailable)
-            {
-                keyInfo = Console.ReadKey(true);
-                consoleKey = keyInfo.Key;
-            }
+        //public void CheckKeyPress()
+        //{
+        //    if (Console.KeyAvailable)
+        //    {
+        //        keyInfo = Console.ReadKey(true);
+        //        consoleKey = keyInfo.Key;
+        //    }
 
-            if (consoleKey == ConsoleKey.Spacebar)
-            {
-                this.Jump();
-            }
-            else
-            {
-                this.Fall();
-            }
-            consoleKey = ConsoleKey.A;
-        }
+        //    if (consoleKey == ConsoleKey.Spacebar)
+        //    {
+        //        this.Jump();
+        //    }
+        //    else
+        //    {
+        //        this.Fall();
+        //    }
+        //    consoleKey = ConsoleKey.A;
+        //}
 
     }
 }

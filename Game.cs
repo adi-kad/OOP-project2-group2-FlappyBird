@@ -9,6 +9,7 @@ namespace FlappyBird
     {
         Board board;
         public Bird bird;
+        
         protected Obstacle[] obstacles;
         protected int score;
         public bool isPaused;
@@ -35,14 +36,42 @@ namespace FlappyBird
         public void Run()
         {
             Console.Clear();
-
+            
             board.DrawBoard();
-            bird.DrawBird();
-            bird.CheckKeyPress();
-           
+            board.Draw(bird);
+            //board.Draw(Hinder) - TBD/NYI
+            CheckKeyPress();
+            
+            //Någon keypress check för pause/exit/gå tillbaka till menyn/starta om? //TBD
+            
             Thread.Sleep(100);          
-        }       
-        
+        }
+
+        public void CheckKeyPress()
+        {
+            if (Console.KeyAvailable)
+            {
+                keyInfo = Console.ReadKey(true);
+                consoleKey = keyInfo.Key;
+            }
+
+            if (consoleKey == ConsoleKey.Spacebar)
+            {
+                bird.Jump();
+            }
+            else if (consoleKey == ConsoleKey.Escape)
+            {
+                this.isOver = true;
+            }
+            else
+            {
+                bird.Fall();
+            }
+            consoleKey = ConsoleKey.A;
+        }
+
+
+
     }
    
 }
