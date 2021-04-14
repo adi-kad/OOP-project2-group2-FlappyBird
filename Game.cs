@@ -14,6 +14,7 @@ namespace FlappyBird
         protected int score;
         public bool isPaused;
         public bool isOver;
+        
 
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
@@ -32,18 +33,18 @@ namespace FlappyBird
             isOver = false;
             isPaused = false;
         }
-    
+
+        int x = 25;
         public void Run()
-        {
+        {     
             Console.Clear();
-            
-            board.DrawBoard();
-            board.Draw(bird);
-            //board.Draw(Hinder) - TBD/NYI
             CheckKeyPress();
-            
-            //Någon keypress check för pause/exit/gå tillbaka till menyn/starta om? //TBD
-            
+
+            board.DrawBoard();
+            board.Draw(bird);       
+            board.Draw(x);
+            x--;
+
             Thread.Sleep(100);          
         }
 
@@ -61,7 +62,7 @@ namespace FlappyBird
             }
             else if (consoleKey == ConsoleKey.Escape)
             {
-                this.isOver = true;
+                isOver = true;
             }
             else
             {

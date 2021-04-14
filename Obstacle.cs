@@ -6,5 +6,6 @@ namespace FlappyBird
 {
     class Obstacle
     {
+
     }
 }
