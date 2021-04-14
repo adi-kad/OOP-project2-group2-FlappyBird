@@ -31,38 +31,17 @@ namespace FlappyBird
             isOver = false;
             isPaused = false;
         }
-
+    
         public void Run()
         {
             Console.Clear();
-            
+
             board.DrawBoard();
             bird.DrawBird();
-
-            CheckKeyPress();
+            bird.CheckKeyPress();
            
-            Thread.Sleep(100);
-            
-        }
-
-        public void CheckKeyPress()
-        {
-            if (Console.KeyAvailable)
-            {
-                keyInfo = Console.ReadKey(true);
-                consoleKey = keyInfo.Key;
-            }
-
-            if (consoleKey == ConsoleKey.Spacebar)
-            {
-                bird.Jump();
-            }
-            else
-            {
-                bird.Fall();
-            }
-            consoleKey = ConsoleKey.A;
-        }
+            Thread.Sleep(100);          
+        }       
         
     }
    
