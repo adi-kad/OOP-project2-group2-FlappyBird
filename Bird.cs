@@ -23,7 +23,7 @@ namespace FlappyBird
 
         public void Jump() 
         {
-            Y--;
+            Y-=2;
         }
 
         public void Fall() 
@@ -34,6 +34,7 @@ namespace FlappyBird
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("<>?<>");
         }
        

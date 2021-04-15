@@ -9,8 +9,7 @@ namespace FlappyBird
     {
       
         Board board;
-        public Bird bird;
-        
+        public Bird bird;        
         protected Obstacle[] obstacles;
         protected int score;
         public bool isOver;
@@ -27,11 +26,9 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            //obstacles = new Obstacle[5];
             score = 0;
             board = new Board();
-            isOver = false;
-            isPaused = false;
+            isOver = false;         
             Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
             Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
             Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
@@ -39,8 +36,8 @@ namespace FlappyBird
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
 
-        //int x = 25;
-        public void Run()
+       
+        public void Run() 
         {     
             Console.Clear();
             CheckKeyPress();
@@ -48,15 +45,18 @@ namespace FlappyBird
             board.DrawBoard();
             board.Draw(bird);       
             board.Draw(obstacles);
-            // kommer inte åt obstacles[i].xpos
+
             for (int i = 0; i < 4; i++)
             {
                 obstacles[i].xpos--;
             }
 
+            //CheckCollision()
+
             Thread.Sleep(100);          
         }
 
+        //Checking user keypresses
         public void CheckKeyPress()
         {
             if (Console.KeyAvailable)
@@ -65,9 +65,16 @@ namespace FlappyBird
                 consoleKey = keyInfo.Key;
             }
 
-            if (consoleKey == ConsoleKey.Spacebar)
+            if (consoleKey == ConsoleKey.UpArrow || consoleKey == ConsoleKey.Spacebar)
             {
                 bird.Jump();
+            }            
+            else if (consoleKey == ConsoleKey.DownArrow)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    bird.Fall();
+                }
             }
             else if (consoleKey == ConsoleKey.Escape)
             {
@@ -80,7 +87,13 @@ namespace FlappyBird
             consoleKey = ConsoleKey.A;
         }
 
+        //Check if bird collides with obstacle or falls to ground
+        public void CheckCollision() 
+        { 
+            //Check if bird collides
 
+            //if(collision) isOver = true?            
+        }
 
     }
    

@@ -10,8 +10,8 @@ namespace FlappyBird
             Menu menu = new Menu();          
             menu.RunMenu();
 
-            //while (menu.option != MenuOption.Quit)
-            //{
+            while (menu.option != MenuOption.Quit)
+            {
                 if (menu.option == MenuOption.Start)
                 {
                     Game game = new Game();
@@ -21,8 +21,8 @@ namespace FlappyBird
                     {
                         game.Run();
                     }
-                }                
-            //}         
+                }
+            }
         }
 
     }
