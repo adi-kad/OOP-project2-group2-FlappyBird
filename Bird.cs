@@ -34,6 +34,7 @@ namespace FlappyBird
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("<>?<>");
         }
        

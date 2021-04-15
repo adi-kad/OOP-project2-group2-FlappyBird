@@ -6,11 +6,7 @@ namespace FlappyBird
 
     class Board : Game , IDimensions
     {
-        //int obsheight = 10;
-        //int obswidth = 4;
-        //int gate = 8;
         int obsFloor;
-        //int score = 0;
 
         public int width { get ; set ; }
         public int height { get ; set ; }
@@ -18,6 +14,7 @@ namespace FlappyBird
         public Board()
         {
             this.height = 25;
+            width = Console.WindowWidth;
         }
 
         public Board(int height, int width)
@@ -26,7 +23,6 @@ namespace FlappyBird
             this.width = width;
         }
 
-
         public void Draw(Bird bird)
         {
             bird.DrawBird();
@@ -34,22 +30,16 @@ namespace FlappyBird
 
         public void Draw(Obstacle[] obstacles)
         {
-            //Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
-            //Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
-            //Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
-            //Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
-            //Obstacle[] obstacles = { Obstacle1, Obstacle2, Obstacle3, Obstacle4};
             for (int i = 0; i < obstacles.Length; i++)
             {
                 obsFloor = obstacles[i].height + obstacles[i].gate;
-                for (int j = 1; j < height /*Obstacle Height NYI*/; j++)
+                for (int j = 1; j < height; j++)
                 {
                     if (obstacles[i].xpos == 5)
                     {
                         Random rnd = new Random();
                         obstacles[i].height = rnd.Next(0, 23);
                         obstacles[i].xpos = Console.WindowWidth - 4;
-                        //obstacles[i].width = 4;
                     }
                     
                     else
@@ -59,16 +49,11 @@ namespace FlappyBird
                             Console.BackgroundColor = ConsoleColor.Green;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(obstacles[i].xpos, j);
-                            Console.Write(String.Concat(Enumerable.Repeat(" ", 4 /*obstacles[i].width*/ /*width*/)));
-                            
+                            Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));           
                         }
-                        //obstacles[i].xpos--;
+
                     }
-                    //if (obstacles[i].width <= obstacles[i].xpos)
-                    //{
-                    //    obstacles[i].width--;
-                    //    obstacles[i].xpos--;
-                    //}
+  
                 }
                 
             }
