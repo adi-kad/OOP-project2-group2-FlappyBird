@@ -24,7 +24,7 @@ namespace FlappyBird
             bird.DrawBird();
         }
 
-        public void Draw(int x /*Obstacle x*/)
+        public void Draw(int x /*Obstacle[] obstacles*/)
         {
             for (int i = 1; i < 10 /*Obstacle Height NYI*/; i++)
             {
