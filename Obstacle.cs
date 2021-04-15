@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FlappyBird
 {
-    class Obstacle
+    public class Obstacle
     {
         public string name { get; set; }
         public int height{ get; set; }
@@ -17,6 +17,7 @@ namespace FlappyBird
             this.width = 4;
             this.gate = 8;
             this.name = name;
+            this.xpos = xpos;
         }
     }
 }

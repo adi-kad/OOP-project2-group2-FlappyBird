@@ -17,7 +17,7 @@ namespace FlappyBird
 
         public Bird()
         {
-            X = 25;
+            X = 20;
             Y = 5;
         }
 

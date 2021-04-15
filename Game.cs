@@ -27,14 +27,19 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            obstacles = new Obstacle[5];
+            //obstacles = new Obstacle[5];
             score = 0;
             board = new Board();
             isOver = false;
             isPaused = false;
+            Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
+            Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
+            Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
+            Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
+            obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
 
-        int x = 25;
+        //int x = 25;
         public void Run()
         {     
             Console.Clear();
@@ -42,8 +47,12 @@ namespace FlappyBird
 
             board.DrawBoard();
             board.Draw(bird);       
-            board.Draw(x);
-            x--;
+            board.Draw(obstacles);
+            // kommer inte åt obstacles[i].xpos
+            for (int i = 0; i < 4; i++)
+            {
+                obstacles[i].xpos--;
+            }
 
             Thread.Sleep(100);          
         }
