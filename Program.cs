@@ -22,8 +22,7 @@ namespace FlappyBird
                         game.Run();
                     }
                 }                
-            //}
-          
+            //}         
         }
 
     }
