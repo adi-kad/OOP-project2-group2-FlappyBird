@@ -23,7 +23,7 @@ namespace FlappyBird
 
         public void Jump() 
         {
-            Y--;
+            Y-=2;
         }
 
         public void Fall() 

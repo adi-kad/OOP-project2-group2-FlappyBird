@@ -9,8 +9,7 @@ namespace FlappyBird
     {
       
         Board board;
-        public Bird bird;
-        
+        public Bird bird;        
         protected Obstacle[] obstacles;
         protected int score;
         public bool isOver;
@@ -54,7 +53,7 @@ namespace FlappyBird
 
             //CheckCollision()
 
-            Thread.Sleep(50);          
+            Thread.Sleep(100);          
         }
 
         //Checking user keypresses
@@ -66,9 +65,16 @@ namespace FlappyBird
                 consoleKey = keyInfo.Key;
             }
 
-            if (consoleKey == ConsoleKey.Spacebar)
+            if (consoleKey == ConsoleKey.UpArrow || consoleKey == ConsoleKey.Spacebar)
             {
                 bird.Jump();
+            }            
+            else if (consoleKey == ConsoleKey.DownArrow)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    bird.Fall();
+                }
             }
             else if (consoleKey == ConsoleKey.Escape)
             {
@@ -84,7 +90,9 @@ namespace FlappyBird
         //Check if bird collides with obstacle or falls to ground
         public void CheckCollision() 
         { 
-            
+            //Check if bird collides
+
+            //if(collision) isOver = true?            
         }
 
     }

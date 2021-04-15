@@ -33,7 +33,7 @@ namespace FlappyBird
             for (int i = 0; i < obstacles.Length; i++)
             {
                 obsFloor = obstacles[i].height + obstacles[i].gate;
-                for (int j = 1; j < height; j++)
+                for (int j = 1; j <= height; j++)
                 {
                     if (obstacles[i].xpos == 5)
                     {

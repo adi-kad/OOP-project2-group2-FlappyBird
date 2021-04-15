@@ -23,7 +23,6 @@ namespace FlappyBird
         public MenuOption RunMenu()
         {
             PrintFlappyBird();
-
             Console.WriteLine("             Press [Spacebar] to start game\n\n" +
                               "             Press [H] to view high scores\n\n" +
                               "             Press [Escape] to exit program\n\n");
