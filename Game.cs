@@ -14,6 +14,7 @@ namespace FlappyBird
         protected Obstacle[] obstacles;
         protected int score;
         public bool isOver;
+        //public bool isExited;
         
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();

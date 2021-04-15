@@ -12,27 +12,34 @@ namespace FlappyBird
     class Menu
     {
         public MenuOption option;
+        ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
+        ConsoleKey consoleKey = new ConsoleKey();
 
         public Menu()
         {
 
         }
 
-        public MenuOption Start()
+        public MenuOption RunMenu()
         {
             PrintFlappyBird();
-            Console.WriteLine("1. Start   2. Highscores   3.Quit");
-            string input = Console.ReadLine();
 
-            switch (input)
+            Console.WriteLine("             Press [Spacebar] to start game\n\n" +
+                              "             Press [H] to view high scores\n\n" +
+                              "             Press [Escape] to exit program\n\n");
+
+            keyInfo = Console.ReadKey(true);
+            consoleKey = keyInfo.Key;
+
+            switch (consoleKey)
             {
-                case "1":
+                case ConsoleKey.Spacebar:
                     option = MenuOption.Start;
                     break;
-                case "2":
+                case ConsoleKey.H:
                     option = MenuOption.HighScores;
                     break;
-                case "3":
+                case ConsoleKey.Escape:
                     option = MenuOption.Quit;
                     break;
                 default:
@@ -45,26 +52,27 @@ namespace FlappyBird
 
         public void PrintFlappyBird()
         {
-            string[] bird = new string[] 
+            string[] bird = new string[]
             {
-                "───────────▄██████████████▄───────",
-                "───────▄████░░░░░░░░█▀────█▄──────",
-                "──────██░░░░░░░░░░░█▀──────█▄─────",
-                "─────██░░░░░░░░░░░█▀────────█▄────",
-                "────██░░░░░░░░░░░░█──────────██───",
-                "───██░░░░░░░░░░░░░█──────██──██───",
-                "──██░░░░░░░░░░░░░░█▄─────██──██───",
-                "─████████████░░░░░░██────────██───",
-                "██░░░░░░░░░░░██░░░░░█████████████",
-                "██░░░░░░░░░░░██░░░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█",
-                "██░░░░░░░░░░░██░░░█▓▓▓▓▓▓▓▓▓▓▓▓▓▓█",
-                "─▀███████████▒▒▒▒█▓▓▓███████████▀─",
-                "────██▒▒▒▒▒▒▒▒▒▒▒▒█▓▓▓▓▓▓▓▓▓▓▓▓█──",
-                "─────██▒▒▒▒▒▒▒▒▒▒▒▒██▓▓▓▓▓▓▓▓▓▓█──",
-                "──────█████▒▒▒▒▒▒▒▒▒▒██████████───",
-                "────────▀███████████▀────────────"
+                "             ───────────▄██████████████▄───────",
+                "             ───────▄████░░░░░░░░█▀────█▄──────",
+                "             ──────██░░░░░░░░░░░█▀──────█▄─────",
+                "             ─────██░░░░░░░░░░░█▀────────█▄────",
+                "             ────██░░░░░░░░░░░░█──────────██───",
+                "             ───██░░░░░░░░░░░░░█──────██──██───",
+                "             ──██░░░░░░░░░░░░░░█▄─────██──██───",
+                "             ─████████████░░░░░░██────────██───",
+                "             ██░░░░░░░░░░░██░░░░░█████████████",
+                "             ██░░░░░░░░░░░██░░░░█▓▓▓▓▓▓▓▓▓▓▓▓▓█",
+                "             ██░░░░░░░░░░░██░░░█▓▓▓▓▓▓▓▓▓▓▓▓▓▓█",
+                "             ─▀███████████▒▒▒▒█▓▓▓███████████▀─",
+                "             ────██▒▒▒▒▒▒▒▒▒▒▒▒█▓▓▓▓▓▓▓▓▓▓▓▓█──",
+                "             ─────██▒▒▒▒▒▒▒▒▒▒▒▒██▓▓▓▓▓▓▓▓▓▓█──",
+                "             ──────█████▒▒▒▒▒▒▒▒▒▒██████████───",
+                "             ────────▀███████████▀────────────"
             };
 
+            Console.WriteLine();
             for (int i = 0; i < bird.Length; i++)
             {
                 //Console.SetCursorPosition(); Placera i mitten kanske?
