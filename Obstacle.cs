@@ -4,8 +4,9 @@ using System.Text;
 
 namespace FlappyBird
 {
-    class Obstacle
+    class Obstacle : IDimensions
     {
-
+        public int width { get; set; }
+        public int height { get; set; }
     }
 }
