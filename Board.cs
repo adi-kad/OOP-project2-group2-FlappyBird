@@ -3,15 +3,18 @@ using System.Linq;
 using System.Collections;
 namespace FlappyBird
 {
-    class Board : Game
+
+    class Board : Game , IDimensions
     {
-        int height;
-        private int width = Console.WindowWidth;
         //int obsheight = 10;
         //int obswidth = 4;
         //int gate = 8;
         int obsFloor;
         //int score = 0;
+
+        public int width { get ; set ; }
+        public int height { get ; set ; }
+
         public Board()
         {
             this.height = 25;
@@ -22,6 +25,7 @@ namespace FlappyBird
             this.height = height;
             this.width = width;
         }
+
 
         public void Draw(Bird bird)
         {
