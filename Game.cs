@@ -7,15 +7,15 @@ namespace FlappyBird
 {
     class Game
     {
+      
         Board board;
         public Bird bird;
         
         protected Obstacle[] obstacles;
         protected int score;
-        public bool isPaused;
         public bool isOver;
+        //public bool isExited;
         
-
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
 
@@ -31,7 +31,6 @@ namespace FlappyBird
             score = 0;
             board = new Board();
             isOver = false;
-            isPaused = false;
         }
 
         int x = 25;
