@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Linq;
-
+using System.Collections;
 namespace FlappyBird
 {
     class Board : Game
     {
         int height;
         private int width = Console.WindowWidth;
-
+        int obsheight = 10;
+        int obswidth = 4;
+        int gate = 8;
+        int obsFloor;
+        int score = 0;
         public Board()
         {
             this.height = 25;
@@ -26,12 +30,21 @@ namespace FlappyBird
 
         public void Draw(int x /*Obstacle x*/)
         {
-            for (int i = 1; i < 10 /*Obstacle Height NYI*/; i++)
+            //Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 40);
+            //Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 60);
+            //Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 70);
+            //Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 80);
+            //Obstacle[] obstacles = { Obstacle1, Obstacle2, Obstacle3, Obstacle4};
+            obsFloor = obsheight + gate;
+            for (int i = 1; i < height /*Obstacle Height NYI*/; i++)
             {
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.SetCursorPosition(x, i);
-                Console.Write(String.Concat(Enumerable.Repeat(" ", 4 /*width*/)));
+                if (i < obsheight | i >= obsFloor)
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(x, i);
+                    Console.Write(String.Concat(Enumerable.Repeat(" ", obswidth /*width*/)));
+                }
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
@@ -50,7 +63,8 @@ namespace FlappyBird
                 Console.SetCursorPosition(i, height);
                 Console.Write("_");
             }
-
+            Console.SetCursorPosition(width/2 - 10 , height + 2);
+            Console.WriteLine($"Score: {score}");
         }
 
     }
