@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FlappyBird
 {
-    class Bird
+    public class Bird
     {
         public int X;
         public int Y;
