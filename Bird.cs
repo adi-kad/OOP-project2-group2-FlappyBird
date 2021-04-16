@@ -8,6 +8,7 @@ namespace FlappyBird
     {
         public int X;
         public int Y;
+        public string birdType { get; set; } = "<>?<>";
         
         public Bird(int x, int y)
         {
@@ -34,7 +35,7 @@ namespace FlappyBird
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);
-            Console.WriteLine("<>?<>");
+            Console.WriteLine(birdType);
         }
        
     }

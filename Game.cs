@@ -26,19 +26,16 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            //obstacles = new Obstacle[5];
             score = 0;
             board = new Board();
             isOver = false;
             isPaused = false;
-            Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
-            Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
-            Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
+            Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 35);
+            Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 62);
+            Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 86);
             Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
-
-        //int x = 25;
         public void Run()
         {     
             Console.Clear();
@@ -69,7 +66,8 @@ namespace FlappyBird
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
-                if (bird.X == obstacles[i].xpos)
+                if (bird.X == obstacles[i].xpos || 
+                    bird.X + bird.birdType.Length - 1 == obstacles[i].xpos)
                 {
                     if (bird.Y <= obstacles[i].height)
                     {

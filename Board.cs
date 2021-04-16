@@ -7,11 +7,6 @@ namespace FlappyBird
     {
         int height;
         private int width = Console.WindowWidth;
-        //int obsheight = 10;
-        //int obswidth = 4;
-        //int gate = 8;
-
-        //int score = 0;
         public Board()
         {
             this.height = 25;
@@ -30,14 +25,9 @@ namespace FlappyBird
 
         public void Draw(Obstacle[] obstacles)
         {
-            //Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
-            //Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
-            //Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
-            //Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
-            //Obstacle[] obstacles = { Obstacle1, Obstacle2, Obstacle3, Obstacle4};
             for (int i = 0; i < obstacles.Length; i++)
             {
-                for (int j = 1; j <= height /*Obstacle Height NYI*/; j++)
+                for (int j = 1; j <= height ; j++)
                 {
                     if (obstacles[i].xpos == 5)
                     {
@@ -57,13 +47,8 @@ namespace FlappyBird
                             Console.Write(String.Concat(Enumerable.Repeat(" ", 4 /*obstacles[i].width*/ /*width*/)));
                             
                         }
-                        //obstacles[i].xpos--;
                     }
-                    //if (obstacles[i].width <= obstacles[i].xpos)
-                    //{
-                    //    obstacles[i].width--;
-                    //    obstacles[i].xpos--;
-                    //}
+
                 }
                 
             }
