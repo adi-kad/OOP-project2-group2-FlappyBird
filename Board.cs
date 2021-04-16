@@ -7,6 +7,7 @@ namespace FlappyBird
     class Board : Game , IDimensions
     {
         int obsFloor;
+        HighScore highScore = new HighScore();
 
         public int width { get ; set ; }
         public int height { get ; set ; }
@@ -39,9 +40,9 @@ namespace FlappyBird
                     {
                         Random rnd = new Random();
                         obstacles[i].height = rnd.Next(0, 23);
-                        obstacles[i].xpos = Console.WindowWidth - 4;
-                    }
-                    
+                        obstacles[i].xpos = Console.WindowWidth - 4;                       
+                        highScore.Score += 1;
+                    }                  
                     else
                     {
                         if (j < obstacles[i].height | j >= obsFloor)
@@ -49,13 +50,10 @@ namespace FlappyBird
                             Console.BackgroundColor = ConsoleColor.Green;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(obstacles[i].xpos, j);
-                            Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));           
-                        }
-
+                            Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));
+                        }                        
                     }
-  
                 }
-                
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
@@ -75,7 +73,7 @@ namespace FlappyBird
                 Console.Write("_");
             }
             Console.SetCursorPosition(width/2 - 10 , height + 2);
-            Console.WriteLine($"Score: {score}");
+            Console.WriteLine($"Score: {highScore.Score}");
         }
 
     }

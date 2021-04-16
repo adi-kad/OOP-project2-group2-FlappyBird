@@ -38,14 +38,14 @@ namespace FlappyBird
 
        
         public void Run() 
-        {     
+        {
             Console.Clear();
             CheckKeyPress();
 
             board.DrawBoard();
             board.Draw(bird);       
             board.Draw(obstacles);
-
+            
             for (int i = 0; i < 4; i++)
             {
                 obstacles[i].xpos--;
