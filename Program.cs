@@ -7,15 +7,22 @@ namespace FlappyBird
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.SetUp();
+            Menu menu = new Menu();          
+            menu.RunMenu();
 
-            while (!game.isOver)
+            while (menu.option != MenuOption.Quit)
             {
-                game.Run();
-            }
+                if (menu.option == MenuOption.Start)
+                {
+                    Game game = new Game();
+                    game.SetUp();
 
-            Console.Clear();
+                    while (!game.isOver/*is.Exited*/)
+                    {
+                        game.Run();
+                    }
+                }
+            }
         }
 
     }

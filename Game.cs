@@ -88,9 +88,16 @@ namespace FlappyBird
                 consoleKey = keyInfo.Key;
             }
 
-            if (consoleKey == ConsoleKey.Spacebar)
+            if (consoleKey == ConsoleKey.UpArrow || consoleKey == ConsoleKey.Spacebar)
             {
                 bird.Jump();
+            }
+            else if (consoleKey == ConsoleKey.DownArrow)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    bird.Fall();
+                }
             }
             else if (consoleKey == ConsoleKey.Escape)
             {
@@ -102,9 +109,6 @@ namespace FlappyBird
             }
             consoleKey = ConsoleKey.A;
         }
-
-
-
     }
    
 }

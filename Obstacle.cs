@@ -4,7 +4,8 @@ using System.Text;
 
 namespace FlappyBird
 {
-    public class Obstacle
+
+    public class Obstacle : IDimensions
     {
         public string name { get; set; }
         public int height{ get; set; }
@@ -22,4 +23,5 @@ namespace FlappyBird
             this.obsFloor = this.height + this.gate;
         }
     }
+    
 }

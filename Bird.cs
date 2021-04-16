@@ -4,12 +4,11 @@ using System.Text;
 
 namespace FlappyBird
 {
-    class Bird 
+    class Bird
     {
         public int X;
         public int Y;
         public string birdType { get; set; } = "<>?<>";
-        
         public Bird(int x, int y)
         {
             X = x;
@@ -24,7 +23,7 @@ namespace FlappyBird
 
         public void Jump() 
         {
-            Y--;
+            Y-=2;
         }
 
         public void Fall() 
@@ -35,6 +34,7 @@ namespace FlappyBird
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(birdType);
         }
        
