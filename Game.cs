@@ -47,11 +47,11 @@ namespace FlappyBird
             board.DrawBoard(score);
             board.Draw(bird);       
             board.Draw(obstacles);
-            // kommer inte åt obstacles[i].xpos
             for (int i = 0; i < 4; i++)
             {
                 obstacles[i].xpos--;
             }
+            CheckCollision();
             DeliverScore();
             Thread.Sleep(100);          
         }
@@ -65,7 +65,23 @@ namespace FlappyBird
                 }
             }
         }
-
+        public void CheckCollision()
+        {
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                if (bird.X == obstacles[i].xpos)
+                {
+                    if (bird.Y <= obstacles[i].height)
+                    {
+                        isOver = true;
+                    }
+                    else if (bird.Y >= obstacles[i].obsFloor)
+                    {
+                        isOver = true;
+                    }
+                }
+            }
+        }
         public void CheckKeyPress()
         {
             if (Console.KeyAvailable)

@@ -37,8 +37,7 @@ namespace FlappyBird
             //Obstacle[] obstacles = { Obstacle1, Obstacle2, Obstacle3, Obstacle4};
             for (int i = 0; i < obstacles.Length; i++)
             {
-                obsFloor = obstacles[i].height + obstacles[i].gate;
-                for (int j = 1; j < height /*Obstacle Height NYI*/; j++)
+                for (int j = 1; j <= height /*Obstacle Height NYI*/; j++)
                 {
                     if (obstacles[i].xpos == 5)
                     {
@@ -50,7 +49,7 @@ namespace FlappyBird
                     
                     else
                     {
-                        if (j < obstacles[i].height | j >= obsFloor)
+                        if (j < obstacles[i].height | j >= obstacles[i].obsFloor)
                         {
                             Console.BackgroundColor = ConsoleColor.Green;
                             Console.ForegroundColor = ConsoleColor.Green;
