@@ -72,7 +72,7 @@ namespace FlappyBird
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
-        public void DrawBoard()
+        public void DrawBoard(int score)
         {
             for (int i = 0; i < width; i++)
             {

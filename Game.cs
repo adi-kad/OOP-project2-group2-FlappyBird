@@ -11,7 +11,7 @@ namespace FlappyBird
         public Bird bird;
         
         protected Obstacle[] obstacles;
-        protected int score;
+        protected int score { get; set; }
         public bool isPaused;
         public bool isOver;
         
@@ -21,7 +21,6 @@ namespace FlappyBird
 
         public Game()
         {
-            
         }
 
         public void SetUp()
@@ -45,7 +44,7 @@ namespace FlappyBird
             Console.Clear();
             CheckKeyPress();
 
-            board.DrawBoard();
+            board.DrawBoard(score);
             board.Draw(bird);       
             board.Draw(obstacles);
             // kommer inte åt obstacles[i].xpos
@@ -53,8 +52,18 @@ namespace FlappyBird
             {
                 obstacles[i].xpos--;
             }
-
+            DeliverScore();
             Thread.Sleep(100);          
+        }
+        public void DeliverScore()
+        {
+            for(int i = 0; i < obstacles.Length; i++)
+            {
+                if(obstacles[i].xpos == bird.X - 4)
+                {
+                    score++;
+                }
+            }
         }
 
         public void CheckKeyPress()
