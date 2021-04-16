@@ -10,7 +10,7 @@ namespace FlappyBird
         //int obsheight = 10;
         //int obswidth = 4;
         //int gate = 8;
-        int obsFloor;
+
         //int score = 0;
         public Board()
         {
@@ -44,7 +44,7 @@ namespace FlappyBird
                         Random rnd = new Random();
                         obstacles[i].height = rnd.Next(0, 23);
                         obstacles[i].xpos = Console.WindowWidth - 4;
-                        //obstacles[i].width = 4;
+                        obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
                     }
                     
                     else
