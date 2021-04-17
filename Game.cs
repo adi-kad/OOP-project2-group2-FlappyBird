@@ -44,39 +44,58 @@ namespace FlappyBird
             board.DrawBoard(score);
             board.Draw(bird);       
             board.Draw(obstacles);
-            for (int i = 0; i < 4; i++)
-            {
-                obstacles[i].xpos--;
-            }
-            CheckCollision();
-            DeliverScore();
-            Thread.Sleep(100);          
-        }
-        public void DeliverScore()
-        {
-            for(int i = 0; i < obstacles.Length; i++)
-            {
-                if(obstacles[i].xpos == bird.X - 4)
-                {
-                    score++;
-                }
-            }
-        }
-        public void CheckCollision()
-        {
+            
+            
             for (int i = 0; i < obstacles.Length; i++)
             {
-                if (bird.X == obstacles[i].xpos || 
-                    bird.X + bird.birdType.Length - 1 == obstacles[i].xpos)
+                CheckCollision(i);
+                if (!isOver)
                 {
-                    if (bird.Y <= obstacles[i].height)
-                    {
-                        isOver = true;
-                    }
-                    else if (bird.Y >= obstacles[i].obsFloor)
-                    {
-                        isOver = true;
-                    }
+                    UpdatePosition(i);
+                    DeliverScore(i);
+                }
+            }
+            Thread.Sleep(100);
+            if (isPaused)
+            {
+                Console.WriteLine("Game is paused...press any key to continue");
+                bird.Fall();
+                bird.Jump();
+                Console.ReadKey();
+                isPaused = false;
+            }
+        }
+        private void UpdatePosition(int i)
+        {
+            obstacles[i].xpos--;
+        }
+
+        private void DeliverScore(int i)
+        {
+            if (obstacles[i].xpos == bird.X - 4)
+            {
+                score++;
+            }
+        }
+        private void CheckCollision(int i)
+        {
+            if (obstacles[i].xpos == bird.X
+                                || obstacles[i].xpos + obstacles[i].width == bird.X
+                                || obstacles[i].xpos == bird.X + bird.birdType.Length
+                                || obstacles[i].xpos + obstacles[i].width == bird.X + bird.birdType.Length
+                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 1
+                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 2
+                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 3
+
+                                )
+            {
+                if (bird.Y < obstacles[i].height)
+                {
+                    isOver = true;
+                }
+                else if (bird.Y >= obstacles[i].obsFloor)
+                {
+                    isOver = true;
                 }
             }
         }
@@ -98,6 +117,10 @@ namespace FlappyBird
                 {
                     bird.Fall();
                 }
+            }
+            else if (consoleKey == ConsoleKey.P)
+            {
+                isPaused = true;
             }
             else if (consoleKey == ConsoleKey.Escape)
             {
