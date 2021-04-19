@@ -8,17 +8,20 @@ namespace FlappyBird
     {
         public int X;
         public int Y;
-        
+        public string BirdType { get; set; }
+
         public Bird(int x, int y)
         {
             X = x;
             Y = y;
+            BirdType = "<>?<>";
         }
 
         public Bird()
         {
             X = 20;
             Y = 5;
+            BirdType = "<>?<>";
         }
 
         public void Jump() 
@@ -35,7 +38,7 @@ namespace FlappyBird
         {
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("<>?<>");
+            Console.WriteLine(BirdType);
         }
        
     }

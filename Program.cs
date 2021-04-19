@@ -9,7 +9,6 @@ namespace FlappyBird
         {
             Menu menu = new Menu();          
             menu.RunMenu();
-
             while (menu.option != MenuOption.Quit)
             {
                 if (menu.option == MenuOption.Start)
@@ -21,6 +20,11 @@ namespace FlappyBird
                     {
                         game.Run();
                     }
+                }
+                if (menu.option.Equals(MenuOption.HighScores))
+                {
+                    HighScore scoreBoard = new HighScore();
+                    scoreBoard.PrintHighScore();
                 }
             }
         }
