@@ -74,6 +74,13 @@ namespace FlappyBird
             obstacles[i].xpos--;
         }
 
+        //private void DeliverScore(int i)
+        //{
+        //    if (obstacles[i].xpos == bird.X - 4)
+        //    {
+        //        score++;
+        //    }
+        //}
         private void CheckCollision(int i)
         {
             if (obstacles[i].xpos == bird.X
