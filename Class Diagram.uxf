@@ -1,4 +1,16 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>480</x><y>240</y><w>220</w><h>200</h></coordinates><panel_attributes>Game
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>240</y>
+      <w>220</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Game
 --
 -bird: Bird
 -obstacles:  Obstacles[]
@@ -12,31 +24,75 @@
 +CheckCollision()
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>490</y><w>220</w><h>200</h></coordinates><panel_attributes>Board
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>490</y>
+      <w>220</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Board : IDimensions
 --
--height: int
--width: int
+
 
 
 
 --
 +DrawBoard()
-+Draw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>370</y><w>220</w><h>150</h></coordinates><panel_attributes>Obstacle : IDimensions
++Draw()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>370</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Obstacle : IDimensions
 --
 -X: int
--width: int
--height: int
+
 
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>180</y><w>220</w><h>150</h></coordinates><panel_attributes>Bird : IDimensions
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>180</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Bird : IDimensions
 --
 -X: int
 -Y: int
+-flapping: bool
 --
 +Jump()
 +Fall();
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>30</y><w>220</w><h>160</h></coordinates><panel_attributes>Menu
++DrawBird()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>30</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Menu
 --
 
 
@@ -44,16 +100,39 @@
 +StartGame()
 +ShowHighScores()
 +Exit()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>240</x><y>0</y><w>80</w><h>120</h></coordinates><panel_attributes>IDimensions
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>230</x>
+      <y>0</y>
+      <w>100</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>IDimensions
 --
 int width;
 int height;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>561</y><w>210</w><h>180</h></coordinates><panel_attributes>HighScore
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>560</y>
+      <w>220</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>HighScore
 --
 #Name: string
 +Score: int
-#savedHighScore: dictionary
-fileExist: bool
+#savedHighScore: &lt;string, int&gt;
+-filePath: string
+-fileExist: bool
 +TopHighScourCount: int
 --
 +setDefaultFilepath()
@@ -61,4 +140,8 @@ fileExist: bool
 +PrintHighScore()
 +LoadFile()
 +WriteToFile()
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
++CheckForHighScore()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
