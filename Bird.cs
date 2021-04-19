@@ -21,8 +21,8 @@ namespace FlappyBird
 
         public Bird()
         {
-            X = 20;
-            Y = 5;
+            X = 16;
+            Y = 12;
             BirdType = "<>?<>";
         }
 
