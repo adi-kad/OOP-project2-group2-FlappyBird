@@ -3,16 +3,15 @@ using System.Linq;
 using System.Collections;
 namespace FlappyBird
 {
-
-    class Board : Game , IDimensions
+    class Board : Game
     {
-        int obsFloor;
-        public int width { get ; set ; }
-        public int height { get ; set ; }
+
+        int height;
+        private int width = Console.WindowWidth;
+
         public Board()
         {
             this.height = 25;
-            width = Console.WindowWidth;
         }
 
         public Board(int height, int width)
@@ -30,30 +29,38 @@ namespace FlappyBird
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
-                obsFloor = obstacles[i].height + obstacles[i].gate;               
-                for (int j = 1; j <= height; j++)
+
+                for (int j = 1; j <= height ; j++)
+
                 {
                     if (obstacles[i].xpos == 5)
                     {
                         Random rnd = new Random();
                         obstacles[i].height = rnd.Next(0, 23);
                         obstacles[i].xpos = Console.WindowWidth - 4;
-                    }                  
+
+                        obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
+                    }
+                    
+
                     else
                     {
-                        if (j < obstacles[i].height | j >= obsFloor)
+                        if (j < obstacles[i].height | j >= obstacles[i].obsFloor)
                         {
                             Console.BackgroundColor = ConsoleColor.Green;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(obstacles[i].xpos, j);
+
                             Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));
                         }                        
                     }
+
                 }
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
         }
+
 
         public void DrawBoard(HighScore highScore)
         {

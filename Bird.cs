@@ -6,10 +6,12 @@ namespace FlappyBird
 {
     class Bird
     {
-        public int X;
-        public int Y;
-        public string BirdType { get; set; }
 
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string birdType { get; set; } = "<>?<>";
+        public bool flapping;
+      
         public Bird(int x, int y)
         {
             X = x;
@@ -27,18 +29,28 @@ namespace FlappyBird
         public void Jump() 
         {
             Y-=2;
+            flapping = true;
         }
 
         public void Fall() 
         {
             Y++;
+            flapping = false;
         }
     
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine(BirdType);
+
+            //Console.WriteLine(birdType);
+            if (flapping)
+            {
+                Console.WriteLine(@"//?\\");
+            }
+            else
+                Console.WriteLine(@"\\?//");
+
         }
        
     }
