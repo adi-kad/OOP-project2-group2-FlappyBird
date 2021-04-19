@@ -41,7 +41,7 @@ namespace FlappyBird
             Console.Clear();
             CheckKeyPress();
 
-            board.DrawBoard(score);
+            board.DrawBoard(highScore);
             board.Draw(bird);       
             board.Draw(obstacles);
             
@@ -74,22 +74,15 @@ namespace FlappyBird
             obstacles[i].xpos--;
         }
 
-        private void DeliverScore(int i)
-        {
-            if (obstacles[i].xpos == bird.X - 4)
-            {
-                score++;
-            }
-        }
         private void CheckCollision(int i)
         {
             if (obstacles[i].xpos == bird.X
                                 || obstacles[i].xpos + obstacles[i].width == bird.X
-                                || obstacles[i].xpos == bird.X + bird.birdType.Length
-                                || obstacles[i].xpos + obstacles[i].width == bird.X + bird.birdType.Length
-                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 1
-                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 2
-                                || obstacles[i].xpos == bird.X + bird.birdType.Length - 3
+                                || obstacles[i].xpos == bird.X + bird.BirdType.Length
+                                || obstacles[i].xpos + obstacles[i].width == bird.X + bird.BirdType.Length
+                                || obstacles[i].xpos == bird.X + bird.BirdType.Length - 1
+                                || obstacles[i].xpos == bird.X + bird.BirdType.Length - 2
+                                || obstacles[i].xpos == bird.X + bird.BirdType.Length - 3
 
                                 )
             {

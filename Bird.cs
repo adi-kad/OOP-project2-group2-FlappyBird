@@ -9,7 +9,7 @@ namespace FlappyBird
 
         public int X { get; set; }
         public int Y { get; set; }
-        public string birdType { get; set; } = "<>?<>";
+        public string BirdType { get; set; } = "<>?<>";
         public bool flapping;
       
         public Bird(int x, int y)
