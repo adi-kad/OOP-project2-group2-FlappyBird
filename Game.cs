@@ -7,14 +7,12 @@ namespace FlappyBird
 {
     class Game
     {
-      
-        Board board;
-        public Bird bird;        
+        Board board;       
+        public Bird bird;
+        HighScore highScore;
         protected Obstacle[] obstacles;
-        protected int score;
         public bool isOver;
-        //public bool isExited;
-        
+        //public bool isExited;       
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
 
@@ -26,36 +24,66 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            score = 0;
             board = new Board();
-            isOver = false;         
+            highScore = new HighScore();
+            isOver = false;
             Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 50);
             Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 70);
             Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 90);
             Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
-        }
 
-       
+        }
+     
         public void Run() 
         {
             Console.Clear();
             CheckKeyPress();
 
-            board.DrawBoard();
-            board.Draw(bird);       
-            board.Draw(obstacles);
-            
+            board.DrawBoard(highScore);
+            board.Draw(bird);
+            board.Draw(obstacles);          
             for (int i = 0; i < 4; i++)
             {
                 obstacles[i].xpos--;
             }
+            CheckCollision();
+            highScore.Update(obstacles, bird);
+            //DeliverScore();
 
-            //CheckCollision()
 
             Thread.Sleep(100);          
         }
-
+        /*
+        public void DeliverScore()
+        {
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                if (obstacles[i].xpos == bird.X - 4)
+                {
+                    highScore.Score++;
+                }
+            }
+        }
+        */
+        public void CheckCollision()
+        {
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                if (bird.X == obstacles[i].xpos ||
+                    bird.X + bird.BirdType.Length - 1 == obstacles[i].xpos)
+                {
+                    if (bird.Y <= obstacles[i].height)
+                    {
+                        isOver = true;
+                    }
+                    else if (bird.Y >= obstacles[i].obsFloor)
+                    {
+                        isOver = true;
+                    }
+                }
+            }
+        }
         //Checking user keypresses
         public void CheckKeyPress()
         {
@@ -85,16 +113,6 @@ namespace FlappyBird
                 bird.Fall();
             }
             consoleKey = ConsoleKey.A;
-        }
-
-        //Check if bird collides with obstacle or falls to ground
-        public void CheckCollision() 
-        { 
-            //Check if bird collides
-
-            //if(collision) isOver = true?            
-        }
-
-    }
-   
+        }        
+    }  
 }
