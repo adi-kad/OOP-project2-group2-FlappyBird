@@ -52,11 +52,11 @@ namespace FlappyBird
                 if (!isOver)
                 {
                     UpdatePosition(i);
-                    //DeliverScore(i);                    
+                    highScore.Update(obstacles, bird, i);
                 }          
             }
           
-            highScore.Update(obstacles, bird);
+            
           
             Thread.Sleep(100);
             if (isPaused)
@@ -73,14 +73,6 @@ namespace FlappyBird
         {
             obstacles[i].xpos--;
         }
-
-        //private void DeliverScore(int i)
-        //{
-        //    if (obstacles[i].xpos == bird.X - 4)
-        //    {
-        //        score++;
-        //    }
-        //}
         private void CheckCollision(int i)
         {
             if (obstacles[i].xpos == bird.X
@@ -90,7 +82,6 @@ namespace FlappyBird
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 1
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 2
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 3
-
                                 )
             {
                 if (bird.Y < obstacles[i].height)
