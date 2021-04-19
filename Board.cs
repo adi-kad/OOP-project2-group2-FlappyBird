@@ -5,8 +5,10 @@ namespace FlappyBird
 {
     class Board : Game
     {
+
         int height;
         private int width = Console.WindowWidth;
+
         public Board()
         {
             this.height = 25;
@@ -27,16 +29,20 @@ namespace FlappyBird
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
+
                 for (int j = 1; j <= height ; j++)
+
                 {
                     if (obstacles[i].xpos == 5)
                     {
                         Random rnd = new Random();
                         obstacles[i].height = rnd.Next(0, 23);
                         obstacles[i].xpos = Console.WindowWidth - 4;
+
                         obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
                     }
                     
+
                     else
                     {
                         if (j < obstacles[i].height | j >= obstacles[i].obsFloor)
@@ -44,19 +50,19 @@ namespace FlappyBird
                             Console.BackgroundColor = ConsoleColor.Green;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(obstacles[i].xpos, j);
-                            Console.Write(String.Concat(Enumerable.Repeat(" ", 4 /*obstacles[i].width*/ /*width*/)));
-                            
-                        }
+
+                            Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));
+                        }                        
                     }
 
                 }
-                
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
-        public void DrawBoard(int score)
+
+        public void DrawBoard(HighScore highScore)
         {
             for (int i = 0; i < width; i++)
             {
@@ -70,8 +76,7 @@ namespace FlappyBird
                 Console.Write("_");
             }
             Console.SetCursorPosition(width/2 - 10 , height + 2);
-            Console.WriteLine($"Score: {score}");
+            Console.WriteLine($"Score: {highScore.Score}");
         }
-
     }
 }

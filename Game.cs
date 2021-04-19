@@ -7,14 +7,13 @@ namespace FlappyBird
 {
     class Game
     {
-        Board board;
+
+        Board board;       
         public Bird bird;
-        
+        HighScore highScore;
         protected Obstacle[] obstacles;
-        protected int score { get; set; }
+        public bool isOver;      
         public bool isPaused;
-        public bool isOver;
-        
 
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
@@ -26,8 +25,9 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            score = 0;
             board = new Board();
+
+            highScore = new HighScore();
             isOver = false;
             isPaused = false;
             Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 35);
@@ -52,9 +52,12 @@ namespace FlappyBird
                 if (!isOver)
                 {
                     UpdatePosition(i);
-                    DeliverScore(i);
-                }
+                    //DeliverScore(i);                    
+                }          
             }
+          
+            highScore.Update(obstacles, bird);
+          
             Thread.Sleep(100);
             if (isPaused)
             {
@@ -64,6 +67,7 @@ namespace FlappyBird
                 Console.ReadKey();
                 isPaused = false;
             }
+
         }
         private void UpdatePosition(int i)
         {
@@ -99,6 +103,7 @@ namespace FlappyBird
                 }
             }
         }
+
         public void CheckKeyPress()
         {
             if (Console.KeyAvailable)
@@ -132,6 +137,6 @@ namespace FlappyBird
             }
             consoleKey = ConsoleKey.A;
         }
-    }
-   
+    }   
+
 }
