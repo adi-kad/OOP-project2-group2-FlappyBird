@@ -12,8 +12,6 @@ namespace FlappyBird
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
-        private string fileName;
-        bool fileExist = true;
 
         private int TopHighScoreCount => 10;
         public HighScore()
@@ -28,19 +26,18 @@ namespace FlappyBird
             Score = 0;
             setDefaultFilePath();
         }
+        /*
         public string FilePath
         {
             get { return filePath; }
-            set { filePath =value; }
+            set { filePath = value; }
         }
+        */
         // Set default file path
         
         public void setDefaultFilePath()
         {
-            //https://stackoverflow.com/questions/12335618/file-path-for-project-files
-            fileName = "hightscore.txt";
-            FilePath = Path.Combine(Environment.CurrentDirectory,
-            @"OOP-project2-group2-FlappyBird\", fileName);
+            filePath = @"C:.\highscore.txt";
         }
         // Update highscore
         public void Update(Obstacle[] obstacles, Bird bird, int i)
@@ -93,7 +90,7 @@ namespace FlappyBird
         {
             if (File.Exists(filePath))
             {
-                if (new FileInfo(fileName).Length == 0)
+                if (new FileInfo(filePath).Length == 0)
                 {
                     savedHighScore.Add("No records yet", 0);
                 }
@@ -102,25 +99,29 @@ namespace FlappyBird
                     string[] arrFromFile = File.ReadAllLines(filePath);
                     for (int i = 0; i < arrFromFile.Length; i += 2)
                     {
-                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));                       
-                    }              
-                }             
+                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                    }
+                }
             }
             else
             {
-                FileStream fs = File.Create(fileName);
+                FileStream fs = File.Create(filePath);
                 fs.Close();
+                StreamWriter fileWriter = new StreamWriter(filePath);
+                fileWriter.WriteLine("No records yet!");
+                fileWriter.WriteLine(0);
+                fileWriter.Close();
+                savedHighScore.Add("No records yet", 0);
             }
         }
         // Save highscore to text file from SavedHighScore dictonary
         public void WriteToFile()
         {
-            if ((!File.Exists(fileName)))
+            if ((!File.Exists(filePath)))
             {
-                FileStream fs = File.Create(fileName);
+                FileStream fs = File.Create(filePath);
                 fs.Close();
-                WriteToFile();
-                
+                WriteToFile();               
             }
             else
             {
@@ -131,6 +132,30 @@ namespace FlappyBird
                     fileWriter.WriteLine(keyVal.Value);
                 }
                 fileWriter.Close();
+            }
+        }
+
+        public void ReadAlias()
+        {
+            bool nameExists = true;
+            while (nameExists)
+            {
+                try
+                {
+                    Name = Console.ReadLine();
+                    if (savedHighScore.ContainsKey(Name))
+                    {
+                        Console.WriteLine("name already exists. try again.");
+                    }
+                    else
+                    {
+                        nameExists = false;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("problem with input. try again: ");
+                }
             }
         }
 
@@ -162,33 +187,34 @@ namespace FlappyBird
 
             if (Score < TopHighScoreCount || savedHighScore.ContainsValue(Score))
             {
- 
                 Console.WriteLine("\n" + loser);
                 Console.SetCursorPosition(45, 6);
                 Console.WriteLine(" You didn´t even make it to top 5!");
             }
-
-            else if (Score > savedHighScore.Values.Max())
-            {
-                Console.SetCursorPosition(24, 1);
-                Console.WriteLine(" ****************** CONGRATULATIONS ********************");
-                Console.WriteLine(winner);
-                Console.SetCursorPosition(26,12);
-                Console.WriteLine(" ****************** TOP SCORE ********************");
-                savedHighScore.Add(Name, Score);
-            }
             else
             {
-                foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
+                if (Score > savedHighScore.Values.Max())
                 {
-                    if (Score > keyVal.Value)
-                    {
-                        savedHighScore.Remove(keyVal.Key);
-                        savedHighScore.Add(Name, Score);
-                    }
+                    Console.SetCursorPosition(24, 1);
+                    Console.WriteLine(" ****************** CONGRATULATIONS ********************");
+                    Console.WriteLine(winner);
+                    Console.SetCursorPosition(26,12);
+                    Console.WriteLine(" ****************** TOP SCORE ********************");
+                    savedHighScore.Add(Name, Score);
                 }
-                Console.WriteLine(middleScore);
-            }
+                else
+                {
+                    foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
+                    {
+                        if (Score > keyVal.Value)
+                        {
+                            savedHighScore.Remove(keyVal.Key);
+                            savedHighScore.Add(Name, Score);
+                        }
+                    }
+                    Console.WriteLine(middleScore);
+                }
+            }    
         }
     }
 }

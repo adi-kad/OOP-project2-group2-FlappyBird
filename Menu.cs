@@ -14,6 +14,7 @@ namespace FlappyBird
         public MenuOption option;
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
+        HighScore highScore = new HighScore();
 
         public Menu()
         {
@@ -22,6 +23,14 @@ namespace FlappyBird
 
         public MenuOption RunMenu()
         {
+            try
+            {
+                highScore.LoadFile();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             PrintFlappyBird();
             Console.WriteLine("             Press [Spacebar] to start game\n\n" +
                               "             Press [H] to view high scores\n\n" +
