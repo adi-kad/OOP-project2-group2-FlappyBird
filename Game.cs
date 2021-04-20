@@ -34,7 +34,7 @@ namespace FlappyBird
             Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 33);
             Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 65);
             Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 89);
-            Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 114);
+            Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 113);
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
         public void Run()
