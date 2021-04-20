@@ -4,7 +4,6 @@ using System.Text;
 
 namespace FlappyBird
 {
-
     public class Obstacle : IDimensions
     {
         public string name { get; set; }
@@ -16,11 +15,16 @@ namespace FlappyBird
         public Obstacle(string name, int height, int xpos)
         {
             this.height = height;
-            this.width = 4;
+            this.width = 6;
             this.gate = 8;
             this.name = name;
             this.xpos = xpos;
             this.obsFloor = this.height + this.gate;
+        }
+        public int SetObstacleWidth()
+        {
+            int defaultWidth = 6;
+            return defaultWidth;
         }
     }
     
