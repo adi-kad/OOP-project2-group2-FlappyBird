@@ -30,32 +30,31 @@ namespace FlappyBird
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
-
-                for (int j = 1; j <= height ; j++)
+                defaultObsWidth = obstacles[i].SetObstacleWidth();
+                if (obstacles[i].xpos == 0)
                 {
-                    defaultObsWidth = obstacles[i].SetObstacleWidth();
-                    if (obstacles[i].xpos == 0)
+                    Random rnd = new Random();
+                    obstacles[i].height = rnd.Next(0, 23);
+                    obstacles[i].xpos = Console.WindowWidth - 1;
+                    obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
+                    obstacles[i].width = 1;
+                }
+                else if (obstacles[i].xpos <= obstacles[i].width)
+                {
+                    obstacles[i].width--;
+                }
+                else if (obstacles[i].xpos >= width - defaultObsWidth)
+                {
+                    obstacles[i].width++;
+                }
+                for (int j = 1; j <= height; j++)
+                {
+                    if (j < obstacles[i].height | j >= obstacles[i].obsFloor)
                     {
-                        Random rnd = new Random();
-                        obstacles[i].height = rnd.Next(0, 23);
-                        obstacles[i].xpos = Console.WindowWidth - 1;
-                        obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
-                        obstacles[i].width = 1;
-                    }
-                    else if(defaultObsWidth > obstacles[i].width)
-                    {
-                        obstacles[i].width++;
-                    }
-                    else
-                    {
-                        if (j < obstacles[i].height | j >= obstacles[i].obsFloor)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Green;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.SetCursorPosition(obstacles[i].xpos, j);
-
-                            Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));
-                        }                        
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.SetCursorPosition(obstacles[i].xpos, j);
+                        Console.Write(String.Concat(Enumerable.Repeat(" ", obstacles[i].width)));
                     }
                 }
             }
@@ -72,10 +71,15 @@ namespace FlappyBird
 
             for (int i = 0; i < width; i++)
             {
+                //Console.BackgroundColor = ConsoleColor.Green;
+
                 Console.SetCursorPosition(i, height);
-                Console.Write("_");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("/");
+                //Console.ForegroundColor = ConsoleColor.White;
+                //Console.BackgroundColor = ConsoleColor.Blue;
             }
-            Console.SetCursorPosition(width/2 - 10 , height + 2);
+            Console.SetCursorPosition(width / 2 - 10, height + 2);
             Console.WriteLine($"Score: {highScore.Score}");
         }
         public void DrawPaused()
