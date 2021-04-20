@@ -1,27 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <help_text>Space for diagram notes</help_text>
-  <zoom_level>10</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>480</x>
-      <y>240</y>
-      <w>220</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>Game
+
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>480</x><y>240</y><w>220</w><h>220</h></coordinates><panel_attributes>Game
+
 --
+-board: Board
 -bird: Bird
+-highScore: HighScore
 -obstacles:  Obstacles[]
 -isPaused: bool
 -isOver: bool
--score: int
+
 --
 +SetUp()
 +Run()
-+Pause()
+-UpdatePosition()
 +CheckCollision()
++CheckKeyPress()
+
 
 
 </panel_attributes>
@@ -56,9 +50,13 @@
     </coordinates>
     <panel_attributes>Obstacle : IDimensions
 --
--X: int
 
-
++name: string
++width: int
++height: int
++gate: int
++xpos: int
++obsFloor: int
 
 --
 </panel_attributes>
@@ -76,42 +74,24 @@
 --
 -X: int
 -Y: int
--flapping: bool
+
++BirdType: string
++flapping: bool
 --
 +Jump()
-+Fall();
++Fall()
 +DrawBird()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>480</x>
-      <y>30</y>
-      <w>220</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>Menu
---
-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>30</y><w>220</w><h>160</h></coordinates><panel_attributes>Menu
 
 --
-+StartGame()
-+ShowHighScores()
-+Exit()
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>230</x>
-      <y>0</y>
-      <w>100</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>IDimensions
++option: MenuOption
+
+--
+
++RunMenu()
++PrintFlappyBird()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>240</x><y>0</y><w>80</w><h>120</h></coordinates><panel_attributes>IDimensions
+
 --
 int width;
 int height;
