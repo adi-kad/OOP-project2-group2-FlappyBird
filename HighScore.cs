@@ -93,28 +93,41 @@ namespace FlappyBird
             Console.ReadKey();
         }
         // Load highscore from text file into SavedHighScore dictionary
-        public bool LoadFile()
+        // Load highscore from text file into SavedHighScore dictionary
+        public void LoadFile()
         {
             if (File.Exists(filePath))
             {
-                string[] arrFromFile = File.ReadAllLines(filePath);
-                for (int i = 0; i < arrFromFile.Length; i += 2)
+                if (new FileInfo(filePath).Length == 0)
                 {
-                    savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                    savedHighScore.Add("No records yet", 0);
                 }
-                return true;
+                else
+                {
+                    string[] arrFromFile = File.ReadAllLines(filePath);
+                    for (int i = 0; i < arrFromFile.Length; i += 2)
+                    {
+                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                    }
+                }
             }
             else
             {
-                return false;
+                FileStream fs = File.Create(filePath);
+                fs.Close();
+                StreamWriter fileWriter = new StreamWriter(filePath);
+                fileWriter.WriteLine("No records yet!");
+                fileWriter.WriteLine(0);
+                fileWriter.Close();
+                savedHighScore.Add("No records yet", 0);
             }
         }
         // Save highscore to text file from SavedHighScore dictonary
         public void WriteToFile()
         {
-            if ((!File.Exists("highscore.txt")))
+            if ((!File.Exists(filePath)))
             {
-                FileStream fs = File.Create("highscore.txt");
+                FileStream fs = File.Create(filePath);
                 fs.Close();
                 WriteToFile();
             }
