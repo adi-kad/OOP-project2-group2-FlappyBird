@@ -7,15 +7,25 @@ namespace FlappyBird
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu(); 
-            
+            Menu menu = new Menu();
+            Game game = new Game();
+
+            try
+            {
+                game.highScore.LoadFile();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             while (menu.option != MenuOption.Quit)
             {
                 Console.Clear();
                 menu.RunMenu();
+                game.highScore.WriteToFile();
                 if (menu.option == MenuOption.Start)
-                {
-                    Game game = new Game();
+                {                  
                     game.SetUp();
 
                     while (!game.isOver/*is.Exited*/)
@@ -24,13 +34,12 @@ namespace FlappyBird
                     }
                     if (game.isOver)
                     {
-                        //checkIfScoreIsOnHighscoreList();
+                        game.highScore.CheckTopHighScore();
                     }
                 }
                 if (menu.option.Equals(MenuOption.HighScores))
                 {
-                    HighScore scoreBoard = new HighScore();
-                    scoreBoard.PrintHighScore();
+                    game.highScore.PrintHighScore();
                 }
             }
         }

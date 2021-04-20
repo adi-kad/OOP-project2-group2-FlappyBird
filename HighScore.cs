@@ -1,32 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.IO;
-
 namespace FlappyBird
 {
-    class HighScore 
+    class HighScore
     {
         protected string Name { get; set; }
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
-        public int TopHighScoreCount { get; set; }
+
+        private int TopHighScoreCount => 1;
         public HighScore()
         {
             Score = 0;
             setDefaultFilePath();
-            TopHighScoreCount = 10;
         }
         public HighScore(string name)
         {
             Name = name;
+
             Score = 0;
             setDefaultFilePath();
-            TopHighScoreCount = 10;
         }
- 
+        /*
+        public string FilePath
+        {
+            get { return filePath; }
+            set { filePath = value; }
+        }
+        */
         // Set default file path
+
         public void setDefaultFilePath()
         {
             filePath = @"C:.\highscore.txt";
@@ -50,34 +58,43 @@ namespace FlappyBird
             Console.SetCursorPosition(75, 5);
             Console.WriteLine("╔═════════════════════════════════╗");
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
-                foreach (KeyValuePair<string, int> kvp in savedHighScore)
+                foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderByDescending(key => key.Value))
                 {
-                    Console.SetCursorPosition(75, x);
-                    Console.Write("║");
+                    //Console.ForegroundColor = ConsoleColor.Cyan;
+                    //Console.SetCursorPosition(75, x);
+                    //Console.Write("║");
+                    //Console.SetCursorPosition(109, x);
+                    //Console.ForegroundColor = ConsoleColor.Cyan;
+                    //Console.Write("║");
                     Console.ResetColor();
                     if (scorePrinted == 0)
                     {
-                        Console.Write("    {0}. {1}:   {2} p", x - 5, kvp.Key, kvp.Value);
+                        if (keyVal.Value == 0)
+                        {
+                            Console.SetCursorPosition(79, x+1);
+                            Console.Write("Top 5 highscore not set yet!");
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(79, x + 1);
+                            Console.Write("{0}. {1}: ", x - 5, keyVal.Key);
+                            Console.SetCursorPosition(95, x + 1);
+                            Console.Write(keyVal.Value + " p");
+                        }
                     }
-                    Console.SetCursorPosition(109, x);
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("║");
+                   
                     x++;
                 }
                 scorePrinted = 1;
             }
-
-            //Console.SetCursorPosition(80, x);
-            //Console.WriteLine("No records of top 5 yet!");
-
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(75, 15);
             Console.WriteLine("╚═════════════════════════════════╝");
+            Console.ResetColor();
             Console.ReadKey();
         }
-        // Load highscore from text file into SavedHighScore dictionary
         // Load highscore from text file into SavedHighScore dictionary
         public void LoadFile()
         {
@@ -126,6 +143,121 @@ namespace FlappyBird
                 }
                 fileWriter.Close();
             }
+        }
+
+        public void ReadAlias()
+        {
+            bool nameExists = true;
+            while (nameExists)
+            {
+                try
+                {
+                    Console.SetCursorPosition(40, 20);
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("  Enter your name to highscore list!  ");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.SetCursorPosition(40, 21);
+                    Console.Write("                                      "); 
+                    Console.SetCursorPosition(42, 21);
+                    Name = Console.ReadLine();
+                    Console.ResetColor();
+                    if (savedHighScore.ContainsKey(Name) || Name == "")
+                    {
+                        Console.Write("Name already exists or input is empty. Try again.");
+                        Console.ReadKey();
+                        Console.Write("                                                ");
+                    }
+                    else
+                    {
+                        nameExists = false;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Problem with input. Try again: ");
+                }
+            }
+        }
+
+        public void CheckTopHighScore()
+        {
+            string loser = @"
+                             _
+                            | |
+                            | | ___  ___ ___ _ ____
+                            | |/ _ \/ __ |/ _ \ '__|
+                            | | (_) \__  \  __/ |
+                            |_|\___ /|___/\___|_|
+                                                    ";
+            string winner = @"
+                  
+                           ░██╗░░░░░░░██╗██╗███╗░░██╗███╗░░██╗███████╗██████╗░
+                           ░██║░░██╗░░██║██║████╗░██║████╗░██║██╔════╝██╔══██╗
+                           ░╚██╗████╗██╔╝██║██╔██╗██║██╔██╗██║█████╗░░██████╔╝
+                           ░░████╔═████║░██║██║╚████║██║╚████║██╔══╝░░██╔══██╗
+                           ░░╚██╔╝░╚██╔╝░██║██║░╚███║██║░╚███║███████╗██║░░██║
+                           ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝
+                                                                                ";
+            string middleScore = @"
+                                   
+                                █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █   ▀█▀ █▀█ █▀█   █▀ █
+                                █▄█ █▀▄ ██▄ █▀█ ░█░ ▄   ░█░ █▄█ █▀▀   ▄█ ▄
+                                                                                 ";
+
+            string scoreExist = @"
+                                       SORRY! 
+                                SCORE ALREADY TAKEN";
+
+
+
+            if (Score < TopHighScoreCount)
+            {
+                Console.WriteLine("\n" + loser);
+                Console.SetCursorPosition(45, 19);
+                Console.WriteLine(" You didn´t even make it to top 5!");
+            }
+            else if (savedHighScore.ContainsValue(Score))
+            {
+                Console.WriteLine(scoreExist);
+            }
+            else
+            {
+                if (Score > savedHighScore.Values.Max())
+                {
+                    Console.SetCursorPosition(24, 1);
+                    Console.WriteLine(" ****************** CONGRATULATIONS ********************");
+                    Console.WriteLine(winner);
+                    Console.SetCursorPosition(26, 12);
+                    Console.WriteLine(" ****************** TOP SCORE ********************");
+                    foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
+                    {
+                        if (Score > keyVal.Value && savedHighScore.Count() >=5 || keyVal.Value == 0)
+                        {
+                            savedHighScore.Remove(keyVal.Key);
+                            //savedHighScore.Add(Name, Score);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(middleScore);
+                    foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
+                    {
+                        if (Score > keyVal.Value && savedHighScore.Count() >= 5 || keyVal.Value == 0)
+                        {
+                            savedHighScore.Remove(keyVal.Key);
+                            //savedHighScore.Add(Name, Score);
+                        }
+                    }
+                }
+                ReadAlias();
+                savedHighScore.Add(Name, Score);
+                Score = 0;
+            }
+
+            Console.ReadKey();
         }
     }
 }

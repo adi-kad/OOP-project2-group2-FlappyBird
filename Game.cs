@@ -8,14 +8,13 @@ namespace FlappyBird
     class Game
     {
 
-        Board board;       
+        Board board;
         public Bird bird;
-        HighScore highScore;
+        public HighScore highScore = new HighScore();
         protected Obstacle[] obstacles;
-        public bool isOver;      
+        public bool isOver;
         public bool isPaused;
         bool collision = false;
-
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
 
@@ -26,9 +25,7 @@ namespace FlappyBird
         public void SetUp()
         {
             bird = new Bird();
-            board = new Board();
-
-            highScore = new HighScore();
+            board = new Board();          
             isOver = false;
             isPaused = false;
             Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 33);
@@ -38,12 +35,12 @@ namespace FlappyBird
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
         public void Run()
-        {     
+        {
             Console.Clear();
             CheckKeyPress();
 
             board.DrawBoard(highScore);
-            board.Draw(bird);       
+            board.Draw(bird);
             board.Draw(obstacles);
             for (int i = 0; i < obstacles.Length; i++)
             {
@@ -73,7 +70,6 @@ namespace FlappyBird
             board.DrawCollision();
             isOver = true;
             Console.ReadKey();
-            Console.ReadKey();
         }
 
         private void UpdatePosition(int i)
@@ -102,11 +98,11 @@ namespace FlappyBird
                 else
                     return false;
             }
-            else if(bird.Y == 0 || bird.Y == board.Height)
+            else if (bird.Y == 0 || bird.Y == board.Height)
             {
                 return true;
             }
-            else 
+            else
                 return false;
         }
 
@@ -143,6 +139,6 @@ namespace FlappyBird
             }
             consoleKey = ConsoleKey.A;
         }
-    }   
+    }
 
 }
