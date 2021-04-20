@@ -44,41 +44,37 @@ namespace FlappyBird
         {
             int x = 6;
             int scorePrinted = 0;
-            fileExist = LoadFile();
-            if (fileExist)
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(77, 3);
+            Console.WriteLine("******  TOP 5 HIGHSCORE  ******");
+            Console.SetCursorPosition(75, 5);
+            Console.WriteLine("╔═════════════════════════════════╗");
+
+            for (int i = 0; i < 5; i++)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.SetCursorPosition(77, 3);
-                Console.WriteLine("******  TOP 5 HIGHSCORE  ******");
-                Console.SetCursorPosition(75, 5);
-                Console.WriteLine("╔═════════════════════════════════╗");
-                for (int i = 0; i < 5; i++)
+                foreach (KeyValuePair<string, int> kvp in savedHighScore)
                 {
-                    foreach (KeyValuePair<string, int> kvp in savedHighScore)
+                    Console.SetCursorPosition(75, x);
+                    Console.Write("║");
+                    Console.ResetColor();
+                    if (scorePrinted == 0)
                     {
-                        Console.SetCursorPosition(75, x);
-                        Console.Write("║");
-                        Console.ResetColor();
-                        if (scorePrinted == 0)
-                        {
-                            Console.Write("    {0}. {1}:   {2} p", x - 5, kvp.Key, kvp.Value);
-                        }                      
-                        Console.SetCursorPosition(109, x);
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("║");
-                        x++;
+                        Console.Write("    {0}. {1}:   {2} p", x - 5, kvp.Key, kvp.Value);
                     }
-                    scorePrinted = 1;
+                    Console.SetCursorPosition(109, x);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("║");
+                    x++;
                 }
-               
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.SetCursorPosition(75, 15);
-                Console.WriteLine("╚═════════════════════════════════╝");
+                scorePrinted = 1;
             }
-            else
-            {
-                Console.WriteLine("No records of top 5 yet!");
-            }
+
+            //Console.SetCursorPosition(80, x);
+            //Console.WriteLine("No records of top 5 yet!");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(75, 15);
+            Console.WriteLine("╚═════════════════════════════════╝");
             Console.ReadKey();
         }
         // Load highscore from text file into SavedHighScore dictionary
