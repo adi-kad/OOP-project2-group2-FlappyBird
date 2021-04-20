@@ -1,4 +1,6 @@
+
 <diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>480</x><y>240</y><w>220</w><h>220</h></coordinates><panel_attributes>Game
+
 --
 -board: Board
 -bird: Bird
@@ -16,28 +18,63 @@
 
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>490</y><w>220</w><h>200</h></coordinates><panel_attributes>Board
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>490</y>
+      <w>220</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Board : IDimensions
 --
--height: int
--width: int
+
 
 
 
 --
 +DrawBoard()
-+Draw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>370</y><w>220</w><h>150</h></coordinates><panel_attributes>Obstacle : IDimensions
++Draw()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>370</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Obstacle : IDimensions
 --
+
 +name: string
 +width: int
 +height: int
 +gate: int
 +xpos: int
 +obsFloor: int
+
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>180</y><w>220</w><h>150</h></coordinates><panel_attributes>Bird : IDimensions
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>180</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Bird : IDimensions
 --
 -X: int
 -Y: int
+
 +BirdType: string
 +flapping: bool
 --
@@ -45,22 +82,37 @@
 +Fall()
 +DrawBird()
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>30</y><w>220</w><h>160</h></coordinates><panel_attributes>Menu
+
 --
 +option: MenuOption
 
 --
+
 +RunMenu()
 +PrintFlappyBird()
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>240</x><y>0</y><w>80</w><h>120</h></coordinates><panel_attributes>IDimensions
+
 --
 int width;
 int height;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>561</y><w>210</w><h>180</h></coordinates><panel_attributes>HighScore
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>560</y>
+      <w>220</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>HighScore
 --
 #Name: string
 +Score: int
-#savedHighScore: dictionary
-fileExist: bool
+#savedHighScore: &lt;string, int&gt;
+-filePath: string
+-fileExist: bool
 +TopHighScourCount: int
 --
 +setDefaultFilepath()
@@ -68,4 +120,8 @@ fileExist: bool
 +PrintHighScore()
 +LoadFile()
 +WriteToFile()
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
++CheckForHighScore()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

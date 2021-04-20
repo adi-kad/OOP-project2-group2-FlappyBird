@@ -14,6 +14,7 @@ namespace FlappyBird
         protected Obstacle[] obstacles;
         public bool isOver;      
         public bool isPaused;
+        bool collision = false;
 
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
         ConsoleKey consoleKey = new ConsoleKey();
@@ -30,10 +31,10 @@ namespace FlappyBird
             highScore = new HighScore();
             isOver = false;
             isPaused = false;
-            Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 35);
-            Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 62);
-            Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 86);
-            Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
+            Obstacle Obstacle1 = new Obstacle("Obstacle1", 10, 33);
+            Obstacle Obstacle2 = new Obstacle("Obstacle2", 8, 65);
+            Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 89);
+            Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 114);
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
         }
         public void Run()
@@ -44,44 +45,42 @@ namespace FlappyBird
             board.DrawBoard(highScore);
             board.Draw(bird);       
             board.Draw(obstacles);
-            
-            
             for (int i = 0; i < obstacles.Length; i++)
             {
-                CheckCollision(i);
-                if (!isOver)
+                collision = CheckCollision(i);
+                if (!collision)
                 {
                     UpdatePosition(i);
-                    //DeliverScore(i);                    
-                }          
+                    highScore.Update(obstacles, bird, i);
+                }
+                else
+                {
+                    GameOver();
+                }
             }
-          
-            highScore.Update(obstacles, bird);
-          
             Thread.Sleep(100);
             if (isPaused)
             {
-                Console.WriteLine("Game is paused...press any key to continue");
+                board.DrawPaused();
                 bird.Fall();
                 bird.Jump();
                 Console.ReadKey();
                 isPaused = false;
             }
-
         }
+        private void GameOver()
+        {
+            board.DrawCollision();
+            isOver = true;
+            Console.ReadKey();
+            Console.ReadKey();
+        }
+
         private void UpdatePosition(int i)
         {
             obstacles[i].xpos--;
         }
-
-        //private void DeliverScore(int i)
-        //{
-        //    if (obstacles[i].xpos == bird.X - 4)
-        //    {
-        //        score++;
-        //    }
-        //}
-        private void CheckCollision(int i)
+        private bool CheckCollision(int i)
         {
             if (obstacles[i].xpos == bird.X
                                 || obstacles[i].xpos + obstacles[i].width == bird.X
@@ -90,18 +89,25 @@ namespace FlappyBird
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 1
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 2
                                 || obstacles[i].xpos == bird.X + bird.BirdType.Length - 3
-
                                 )
             {
                 if (bird.Y < obstacles[i].height)
                 {
-                    isOver = true;
+                    return true;
                 }
                 else if (bird.Y >= obstacles[i].obsFloor)
                 {
-                    isOver = true;
+                    return true;
                 }
+                else
+                    return false;
             }
+            else if(bird.Y == 0 || bird.Y == board.Height)
+            {
+                return true;
+            }
+            else 
+                return false;
         }
 
         public void CheckKeyPress()

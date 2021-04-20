@@ -32,19 +32,22 @@ namespace FlappyBird
             set { filePath =value; }
         }
         // Set default file path
+        
         public void setDefaultFilePath()
         {
-            filePath = @"D:\Users\ulrika\Programming\hightscore.txt";
+            //https://stackoverflow.com/questions/12335618/file-path-for-project-files
+            string fileName = "hightscore.txt";
+            string path = Path.Combine(Environment.CurrentDirectory,
+            @"OOP-project2-group2-FlappyBird\", fileName);
+
+            //filePath = @"D:\Users\ulrika\Programming\hightscore.txt";
         }
         // Update highscore
-        public void Update(Obstacle[] obstacles, Bird bird)
+        public void Update(Obstacle[] obstacles, Bird bird, int i)
         {
-            for (int i = 0; i < obstacles.Length; i++)
+            if (obstacles[i].xpos == bird.X - 4)
             {
-                if (obstacles[i].xpos == bird.X - 4)
-                {
-                    Score++;
-                }
+                Score++;
             }
         }
         // Print highscore in menu option
