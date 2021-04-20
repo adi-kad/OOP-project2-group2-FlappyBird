@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.IO;
-
 namespace FlappyBird
 {
     class HighScore 
@@ -11,7 +12,9 @@ namespace FlappyBird
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
+        private string fileName;
         bool fileExist = true;
+
         private int TopHighScoreCount => 10;
         public HighScore()
         {
@@ -21,6 +24,7 @@ namespace FlappyBird
         public HighScore(string name)
         {
             Name = name;
+            
             Score = 0;
             setDefaultFilePath();
         }
@@ -34,11 +38,9 @@ namespace FlappyBird
         public void setDefaultFilePath()
         {
             //https://stackoverflow.com/questions/12335618/file-path-for-project-files
-            string fileName = "hightscore.txt";
-            string path = Path.Combine(Environment.CurrentDirectory,
+            fileName = "hightscore.txt";
+            FilePath = Path.Combine(Environment.CurrentDirectory,
             @"OOP-project2-group2-FlappyBird\", fileName);
-
-            //filePath = @"D:\Users\ulrika\Programming\hightscore.txt";
         }
         // Update highscore
         public void Update(Obstacle[] obstacles, Bird bird, int i)
@@ -78,7 +80,6 @@ namespace FlappyBird
                 scorePrinted = 1;
             }
 
-
             //Console.SetCursorPosition(80, x);
             //Console.WriteLine("No records of top 5 yet!");
 
@@ -94,9 +95,6 @@ namespace FlappyBird
             {
                 if (new FileInfo(fileName).Length == 0)
                 {
-                    StreamWriter fileWriter = new StreamWriter(filePath);
-                    fileWriter.WriteLine("Name");
-                    fileWriter.WriteLine("Score");
                     savedHighScore.Add("No records yet", 0);
                 }
                 else
@@ -104,25 +102,25 @@ namespace FlappyBird
                     string[] arrFromFile = File.ReadAllLines(filePath);
                     for (int i = 0; i < arrFromFile.Length; i += 2)
                     {
-                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));                       
                     }              
                 }             
             }
             else
             {
-                FileStream fs = File.Create("highscore.txt");
+                FileStream fs = File.Create(fileName);
                 fs.Close();
-                return false;
             }
         }
         // Save highscore to text file from SavedHighScore dictonary
         public void WriteToFile()
         {
-            if ((!File.Exists("highscore.txt")))
+            if ((!File.Exists(fileName)))
             {
-                FileStream fs = File.Create("highscore.txt");
+                FileStream fs = File.Create(fileName);
                 fs.Close();
                 WriteToFile();
+                
             }
             else
             {
@@ -135,28 +133,8 @@ namespace FlappyBird
                 fileWriter.Close();
             }
         }
+
         public void CheckTopHighScore()
-        {
-            if (Score <= TopHighScoreCount)
-            {
-                if (savedHighScore.ContainsValue(Score))
-                {
-                    Console.WriteLine("Sorry for you :( You didn´t make it to the top 5");
-                }
-                else
-                {
-                    foreach (KeyValuePair<string, int> keyVal in savedHighScore)
-                    {
-                        if (Score > keyVal.Value)
-                        {
-                            savedHighScore.Remove(keyVal.Key);
-                            savedHighScore.Add(Name, Score);
-                        }
-                    }
-                }              
-            }
-        }
-        public static void CheckTopHighScore(string Name, int Score, int TopHighScoreCount, Dictionary<string, int> savedHighScore)
         {
             string loser = @"
                              _
