@@ -12,19 +12,17 @@ namespace FlappyBird
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
         bool fileExist = true;
-        public int TopHighScoreCount { get; set; }
+        private int TopHighScoreCount => 10;
         public HighScore()
         {
             Score = 0;
             setDefaultFilePath();
-            TopHighScoreCount = 10;
         }
         public HighScore(string name)
         {
             Name = name;
             Score = 0;
             setDefaultFilePath();
-            TopHighScoreCount = 10;
         }
         public string FilePath
         {
@@ -55,57 +53,65 @@ namespace FlappyBird
         {
             int x = 6;
             int scorePrinted = 0;
-            fileExist = LoadFile();
-            if (fileExist)
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(77, 3);
+            Console.WriteLine("******  TOP 5 HIGHSCORE  ******");
+            Console.SetCursorPosition(75, 5);
+            Console.WriteLine("╔═════════════════════════════════╗");
+
+            for (int i = 0; i < 5; i++)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.SetCursorPosition(77, 3);
-                Console.WriteLine("******  TOP 5 HIGHSCORE  ******");
-                Console.SetCursorPosition(75, 5);
-                Console.WriteLine("╔═════════════════════════════════╗");
-                for (int i = 0; i < 5; i++)
+                foreach (KeyValuePair<string, int> kvp in savedHighScore)
                 {
-                    foreach (KeyValuePair<string, int> kvp in savedHighScore)
+                    Console.SetCursorPosition(75, x);
+                    Console.Write("║");
+                    Console.ResetColor();
+                    if (scorePrinted == 0)
                     {
-                        Console.SetCursorPosition(75, x);
-                        Console.Write("║");
-                        Console.ResetColor();
-                        if (scorePrinted == 0)
-                        {
-                            Console.Write("    {0}. {1}:   {2} p", x - 5, kvp.Key, kvp.Value);
-                        }                      
-                        Console.SetCursorPosition(109, x);
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("║");
-                        x++;
+                        Console.Write("    {0}. {1}:   {2} p", x - 5, kvp.Key, kvp.Value);
                     }
-                    scorePrinted = 1;
+                    Console.SetCursorPosition(109, x);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("║");
+                    x++;
                 }
-               
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.SetCursorPosition(75, 15);
-                Console.WriteLine("╚═════════════════════════════════╝");
+                scorePrinted = 1;
             }
-            else
-            {
-                Console.WriteLine("No records of top 5 yet!");
-            }
+
+
+            //Console.SetCursorPosition(80, x);
+            //Console.WriteLine("No records of top 5 yet!");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(75, 15);
+            Console.WriteLine("╚═════════════════════════════════╝");
             Console.ReadKey();
         }
         // Load highscore from text file into SavedHighScore dictionary
-        public bool LoadFile()
+        public void LoadFile()
         {
             if (File.Exists(filePath))
             {
-                string[] arrFromFile = File.ReadAllLines(filePath);
-                for (int i = 0; i < arrFromFile.Length; i += 2)
+                if (new FileInfo(fileName).Length == 0)
                 {
-                    savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                    StreamWriter fileWriter = new StreamWriter(filePath);
+                    fileWriter.WriteLine("Name");
+                    fileWriter.WriteLine("Score");
+                    savedHighScore.Add("No records yet", 0);
                 }
-                return true;
+                else
+                {
+                    string[] arrFromFile = File.ReadAllLines(filePath);
+                    for (int i = 0; i < arrFromFile.Length; i += 2)
+                    {
+                        savedHighScore.Add(arrFromFile[i], int.Parse(arrFromFile[i + 1]));
+                    }              
+                }             
             }
             else
             {
+                FileStream fs = File.Create("highscore.txt");
+                fs.Close();
                 return false;
             }
         }
@@ -127,6 +133,83 @@ namespace FlappyBird
                     fileWriter.WriteLine(keyVal.Value);
                 }
                 fileWriter.Close();
+            }
+        }
+        public void CheckTopHighScore()
+        {
+            if (Score <= TopHighScoreCount)
+            {
+                if (savedHighScore.ContainsValue(Score))
+                {
+                    Console.WriteLine("Sorry for you :( You didn´t make it to the top 5");
+                }
+                else
+                {
+                    foreach (KeyValuePair<string, int> keyVal in savedHighScore)
+                    {
+                        if (Score > keyVal.Value)
+                        {
+                            savedHighScore.Remove(keyVal.Key);
+                            savedHighScore.Add(Name, Score);
+                        }
+                    }
+                }              
+            }
+        }
+        public static void CheckTopHighScore(string Name, int Score, int TopHighScoreCount, Dictionary<string, int> savedHighScore)
+        {
+            string loser = @"
+                             _
+                            | |
+                            | | ___  ___ ___ _ ____
+                            | |/ _ \/ __ |/ _ \ '__|
+                            | | (_) \__  \  __/ |
+                            |_|\___ /|___/\___|_|
+                                                    ";
+            string winner = @"
+                  
+                           ░██╗░░░░░░░██╗██╗███╗░░██╗███╗░░██╗███████╗██████╗░
+                           ░██║░░██╗░░██║██║████╗░██║████╗░██║██╔════╝██╔══██╗
+                           ░╚██╗████╗██╔╝██║██╔██╗██║██╔██╗██║█████╗░░██████╔╝
+                           ░░████╔═████║░██║██║╚████║██║╚████║██╔══╝░░██╔══██╗
+                           ░░╚██╔╝░╚██╔╝░██║██║░╚███║██║░╚███║███████╗██║░░██║
+                           ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝
+                                                                                ";
+            string middleScore = @"
+                                   
+                                █▀▀ █▀█ █▀▀ ▄▀█ ▀█▀ █   ▀█▀ █▀█ █▀█   █▀ █
+                                █▄█ █▀▄ ██▄ █▀█ ░█░ ▄   ░█░ █▄█ █▀▀   ▄█ ▄
+                                                                                 ";
+
+
+            if (Score < TopHighScoreCount || savedHighScore.ContainsValue(Score))
+            {
+ 
+                Console.WriteLine("\n" + loser);
+                Console.SetCursorPosition(45, 6);
+                Console.WriteLine(" You didn´t even make it to top 5!");
+            }
+
+            else if (Score > savedHighScore.Values.Max())
+            {
+                Console.SetCursorPosition(24, 1);
+                Console.WriteLine(" ****************** CONGRATULATIONS ********************");
+                Console.WriteLine(winner);
+                Console.SetCursorPosition(26,12);
+                Console.WriteLine(" ****************** TOP SCORE ********************");
+                savedHighScore.Add(Name, Score);
+            }
+            else
+            {
+                foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
+                {
+                    if (Score > keyVal.Value)
+                    {
+                        savedHighScore.Remove(keyVal.Key);
+                        savedHighScore.Add(Name, Score);
+                    }
+                }
+                Console.WriteLine(middleScore);
             }
         }
     }

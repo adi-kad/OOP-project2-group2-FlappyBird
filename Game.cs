@@ -35,6 +35,7 @@ namespace FlappyBird
             Obstacle Obstacle3 = new Obstacle("Obstacle3", 14, 86);
             Obstacle Obstacle4 = new Obstacle("Obstacle4", 18, 110);
             obstacles = new Obstacle[] { Obstacle1, Obstacle2, Obstacle3, Obstacle4 };
+            highScore.LoadFile();
         }
         public void Run()
         {     
