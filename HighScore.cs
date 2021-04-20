@@ -11,7 +11,6 @@ namespace FlappyBird
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
-        bool fileExist = true;
         public int TopHighScoreCount { get; set; }
         public HighScore()
         {
@@ -26,11 +25,7 @@ namespace FlappyBird
             setDefaultFilePath();
             TopHighScoreCount = 10;
         }
-        public string FilePath
-        {
-            get { return filePath; }
-            set { filePath =value; }
-        }
+ 
         // Set default file path
         public void setDefaultFilePath()
         {
