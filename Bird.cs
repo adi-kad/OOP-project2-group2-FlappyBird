@@ -43,7 +43,6 @@ namespace FlappyBird
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
 
-            //Console.WriteLine(birdType);
             if (flapping)
             {
                 Console.WriteLine(@"//?\\");
