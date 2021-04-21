@@ -7,7 +7,7 @@ namespace FlappyBird
     {
 
         private int height;
-        public int Height { get { return height; }}
+        public int Height { get { return height; } }
         private int width = Console.WindowWidth;
         int defaultObsWidth = 0;
         public Board()

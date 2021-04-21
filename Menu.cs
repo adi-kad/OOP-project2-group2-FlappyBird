@@ -18,19 +18,20 @@ namespace FlappyBird
 
         public Menu()
         {
-
         }
 
         public MenuOption RunMenu()
         {
-            try
-            {
-                highScore.LoadFile();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+
+            //try
+            //{
+            //    highScore.LoadFile();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
+
             PrintFlappyBird();
             Console.WriteLine("             Press [Spacebar] to start game\n\n" +
                               "             Press [H] to view high scores\n\n" +
