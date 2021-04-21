@@ -81,7 +81,7 @@ namespace FlappyBird
                         {
                             Console.SetCursorPosition(79, x + 1);
                             Console.Write("{0}. {1}: ", x - 5, keyVal.Key);
-                            Console.SetCursorPosition(95, x + 1);
+                            Console.SetCursorPosition(100, x + 1);
                             Console.Write(keyVal.Value + " p");
                         }
                     }

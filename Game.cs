@@ -55,15 +55,15 @@ namespace FlappyBird
                 }
             }
             // higher speed if you get longer in the game
-            if (highScore.Score < 10)
+            if (highScore.Score < 3)
             {
                 Thread.Sleep(100);
             }
-            else if (highScore.Score < 20)
+            else if (highScore.Score < 6)
             {
                 Thread.Sleep(80);
             }
-            else if (highScore.Score < 50)
+            else if (highScore.Score < 10)
             {
                 Thread.Sleep(50);
             }
@@ -84,7 +84,7 @@ namespace FlappyBird
         {
             board.DrawCollision();
             isOver = true;
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private void UpdatePosition(int i)
