@@ -12,8 +12,10 @@ namespace FlappyBird
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
+
         private int TopHighScoreCount = 0;
         private int min;
+
         public HighScore()
         {
             Score = 0;
@@ -22,7 +24,6 @@ namespace FlappyBird
         public HighScore(string name)
         {
             Name = name;
-
             Score = 0;
             setDefaultFilePath();
         }
@@ -85,14 +86,17 @@ namespace FlappyBird
                         }
                     }
                    
+
                     x++;
                 }
                 scorePrinted = 1;
             }
+
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(75, 15);
             Console.WriteLine("╚═════════════════════════════════╝");
             Console.ResetColor();
+
             Console.ReadKey();
         }
         // Load highscore from text file into SavedHighScore dictionary
@@ -131,7 +135,7 @@ namespace FlappyBird
             {
                 FileStream fs = File.Create(filePath);
                 fs.Close();
-                WriteToFile();
+                WriteToFile();               
             }
             else
             {
@@ -168,6 +172,7 @@ namespace FlappyBird
                         Console.Write("Name already exists or input is empty. Try again.");
                         Console.ReadKey();
                         Console.Write("                                                ");
+
                     }
                     else
                     {
@@ -176,6 +181,7 @@ namespace FlappyBird
                 }
                 catch
                 {
+
                     Console.WriteLine("Problem with input. Try again: ");
                 }
             }
@@ -206,6 +212,7 @@ namespace FlappyBird
                                 █▄█ █▀▄ ██▄ █▀█ ░█░ ▄   ░█░ █▄█ █▀▀   ▄█ ▄
                                                                                  ";
 
+
             string scoreExist = @"
                                        SORRY! 
                                 SCORE ALREADY TAKEN";
@@ -229,6 +236,7 @@ namespace FlappyBird
             {
                 Console.WriteLine(scoreExist);
             }
+
             else
             {
                 if (Score > savedHighScore.Values.Max())
@@ -236,6 +244,7 @@ namespace FlappyBird
                     Console.SetCursorPosition(24, 1);
                     Console.WriteLine(" ****************** CONGRATULATIONS ********************");
                     Console.WriteLine(winner);
+
                     Console.SetCursorPosition(26, 12);
                     Console.WriteLine(" ****************** TOP SCORE ********************");
                     foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderBy(key => key.Value))
@@ -264,6 +273,7 @@ namespace FlappyBird
                 Score = 0;
             }
             Console.ReadKey();
+
         }
     }
 }
