@@ -4,6 +4,7 @@ using System.Text;
 
 namespace FlappyBird
 {
+    //Storing menu alternatives/options in enum
     enum MenuOption
     {
         Start, HighScores, Quit
@@ -11,27 +12,18 @@ namespace FlappyBird
 
     class Menu
     {
-        public MenuOption option;
+        public MenuOption option; 
+
+        //Used for reading user keypress
         ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
-        ConsoleKey consoleKey = new ConsoleKey();
-        HighScore highScore = new HighScore();
+        ConsoleKey consoleKey = new ConsoleKey();         
 
         public Menu()
         {
         }
-
+      
         public MenuOption RunMenu()
         {
-
-            //try
-            //{
-            //    highScore.LoadFile();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //}
-
             PrintFlappyBird();
             Console.WriteLine("             Press [Spacebar] to start game\n\n" +
                               "             Press [H] to view high scores\n\n" +
@@ -40,6 +32,7 @@ namespace FlappyBird
             keyInfo = Console.ReadKey(true);
             consoleKey = keyInfo.Key;
 
+            //Set menu option depending on user keypress
             switch (consoleKey)
             {
                 case ConsoleKey.Spacebar:
@@ -59,6 +52,7 @@ namespace FlappyBird
         }
 
 
+        //Printing out "logo"
         public void PrintFlappyBird()
         {
             string[] bird = new string[]
@@ -84,7 +78,7 @@ namespace FlappyBird
             Console.WriteLine();
             for (int i = 0; i < bird.Length; i++)
             {
-                //Console.SetCursorPosition(); Placera i mitten kanske?
+                //Console.SetCursorPosition(); TDB- place in a better position?
                 Console.WriteLine(bird[i]);
             }
             Console.WriteLine();

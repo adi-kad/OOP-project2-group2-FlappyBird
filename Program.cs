@@ -12,14 +12,14 @@ namespace FlappyBird
 
             try
             {
-                game.highScore.LoadFile();
+                game.highScore.LoadFile(); //Function which loads the file with saved high scores
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
 
-            while (menu.option != MenuOption.Quit)
+            while (menu.option != MenuOption.Quit) 
             {
                 Console.Clear();
                 menu.RunMenu();

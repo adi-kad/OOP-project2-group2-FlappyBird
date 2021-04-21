@@ -7,10 +7,10 @@ namespace FlappyBird
     class Bird
     {
 
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X { get; set; } //position on the x-axis. Increased value moves object to the right
+        public int Y { get; set; } //position on the y-axis. Increased value moves object downwards
         public string BirdType { get; set; } = "<>?<>";
-        public bool flapping;
+        public bool flapping; //true if object is moving up
       
         public Bird(int x, int y)
         {
@@ -37,7 +37,7 @@ namespace FlappyBird
             Y++;
             flapping = false;
         }
-    
+            
         public void DrawBird()
         {
             Console.SetCursorPosition(X, Y);

@@ -7,7 +7,6 @@ namespace FlappyBird
 {
     class Game
     {
-
         Board board;
         public Bird bird;
         public HighScore highScore = new HighScore();
@@ -87,10 +86,13 @@ namespace FlappyBird
             //Console.ReadKey();
         }
 
+        //Moving obstacle to the left
         private void UpdatePosition(int i)
         {
             obstacles[i].xpos--;
         }
+
+        //Checking if objects collide or out of bounds
         private bool CheckCollision(int i)
         {
             if (obstacles[i].xpos == bird.X
@@ -129,30 +131,31 @@ namespace FlappyBird
                 consoleKey = keyInfo.Key;
             }
 
+            //if user presses up arrow key or spacebar key, then bird will move up
             if (consoleKey == ConsoleKey.UpArrow || consoleKey == ConsoleKey.Spacebar)
             {
                 bird.Jump();
             }
-            else if (consoleKey == ConsoleKey.DownArrow)
+            else if (consoleKey == ConsoleKey.DownArrow) // if user presses key down then bird will move down
             {
                 for (int i = 0; i < 2; i++)
                 {
                     bird.Fall();
                 }
             }
-            else if (consoleKey == ConsoleKey.P)
+            else if (consoleKey == ConsoleKey.P) // Game will be paused if user presses P key
             {
                 isPaused = true;
             }
-            else if (consoleKey == ConsoleKey.Escape)
+            else if (consoleKey == ConsoleKey.Escape) //Game over if user presses Escape key
             {
                 isOver = true;
             }
-            else
+            else //else bird will fall down to gravity
             {
-                bird.Fall();
+                bird.Fall(); 
             }
-            consoleKey = ConsoleKey.A;
+            consoleKey = ConsoleKey.A; // Resetting console key
         }
     }
 
