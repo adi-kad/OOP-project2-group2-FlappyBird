@@ -1,5 +1,16 @@
-
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>480</x><y>240</y><w>220</w><h>220</h></coordinates><panel_attributes>Game
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>790</x>
+      <y>240</y>
+      <w>220</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>Game
 
 --
 -board: Board
@@ -8,14 +19,18 @@
 -obstacles:  Obstacles[]
 -isPaused: bool
 -isOver: bool
+-collision: bool
+-keyInfo: ConsoleKeyInfo
+-consoleKey: ConsoleKey
 
 --
++Game()
 +SetUp()
 +Run()
 -UpdatePosition()
-+CheckCollision()
+-CheckCollision(int i)
 +CheckKeyPress()
-
+-UpdatePosition(int i)
 
 
 </panel_attributes>
@@ -24,73 +39,94 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>490</y>
+      <x>790</x>
+      <y>610</y>
       <w>220</w>
-      <h>200</h>
+      <h>160</h>
     </coordinates>
-    <panel_attributes>Board : IDimensions
+    <panel_attributes>Board 
 --
-
-
-
-
+-defaultObsWidth: int
 --
 +DrawBoard()
-+Draw()</panel_attributes>
++Draw(Bird bird)
++Draw(Obstacle[] obstacles)
++DrawPaused()
++DrawCollision()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>370</y>
+      <x>180</x>
+      <y>420</y>
       <w>220</w>
-      <h>150</h>
+      <h>160</h>
     </coordinates>
-    <panel_attributes>Obstacle : IDimensions
+    <panel_attributes>Obstacle
 --
-
 +name: string
-+width: int
-+height: int
 +gate: int
 +xpos: int
 +obsFloor: int
-
 --
++Obstacle(string name, int height, int xpos)
++SetObstacleWidth()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>180</y>
+      <x>450</x>
+      <y>420</y>
       <w>220</w>
-      <h>150</h>
+      <h>230</h>
     </coordinates>
-    <panel_attributes>Bird : IDimensions
+    <panel_attributes>Bird 
 --
 -X: int
 -Y: int
-
 +BirdType: string
 +flapping: bool
 --
++Bird()
++Bird(int x, int y)
 +Jump()
 +Fall()
 +DrawBird()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>30</y><w>220</w><h>160</h></coordinates><panel_attributes>Menu
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>790</x>
+      <y>50</y>
+      <w>220</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Menu
 
 --
 +option: MenuOption
 
 --
-
++Menu()
 +RunMenu()
 +PrintFlappyBird()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>240</x><y>0</y><w>80</w><h>120</h></coordinates><panel_attributes>IDimensions
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>330</x>
+      <y>50</y>
+      <w>100</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>IDimensions
 
 --
 int width;
@@ -101,10 +137,10 @@ int height;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>560</y>
+      <x>1170</x>
+      <y>240</y>
       <w>220</w>
-      <h>310</h>
+      <h>340</h>
     </coordinates>
     <panel_attributes>HighScore
 --
@@ -114,14 +150,162 @@ int height;
 -filePath: string
 -fileExist: bool
 +TopHighScourCount: int
+
 --
++HighScore()
++HighScore(string name)
 +setDefaultFilepath()
 +Update()
 +PrintHighScore()
 +LoadFile()
 +WriteToFile()
-+CheckForHighScore()
++CheckTopHighScore()
++ReadAlias()
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>570</y>
+      <w>80</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=require
+</panel_attributes>
+    <additional_attributes>20.0;50.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>240</x>
+      <y>610</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>IDimensions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>760</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+m1=require
+</panel_attributes>
+    <additional_attributes>20.0;70.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>850</x>
+      <y>820</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>IDimensions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>560</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>310</y>
+      <w>260</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>240.0;20.0;10.0;20.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>320</y>
+      <w>540</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=
+m2=1..*</panel_attributes>
+    <additional_attributes>520.0;10.0;10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>320</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>140</y>
+      <w>310</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;10.0;290.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>180</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>50</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+MenuOption
+--
+Start
+HighScores
+Quit</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>90</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
   </element>
 </diagram>
