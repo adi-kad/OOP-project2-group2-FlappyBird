@@ -27,15 +27,7 @@ namespace FlappyBird
             Score = 0;
             setDefaultFilePath();
         }
-        /*
-        public string FilePath
-        {
-            get { return filePath; }
-            set { filePath = value; }
-        }
-        */
         // Set default file path
-
         public void setDefaultFilePath()
         {
             filePath = @"C:.\highscore.txt";
@@ -63,12 +55,6 @@ namespace FlappyBird
             {
                 foreach (KeyValuePair<string, int> keyVal in savedHighScore.OrderByDescending(key => key.Value))
                 {
-                    //Console.ForegroundColor = ConsoleColor.Cyan;
-                    //Console.SetCursorPosition(75, x);
-                    //Console.Write("║");
-                    //Console.SetCursorPosition(109, x);
-                    //Console.ForegroundColor = ConsoleColor.Cyan;
-                    //Console.Write("║");
                     Console.ResetColor();
                     if (scorePrinted == 0)
                     {
@@ -85,18 +71,14 @@ namespace FlappyBird
                             Console.Write(keyVal.Value + " p");
                         }
                     }
-                   
-
                     x++;
                 }
                 scorePrinted = 1;
             }
-
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(75, 15);
             Console.WriteLine("╚═════════════════════════════════╝");
             Console.ResetColor();
-
             Console.ReadKey();
         }
         // Load highscore from text file into SavedHighScore dictionary
@@ -148,7 +130,7 @@ namespace FlappyBird
                 fileWriter.Close();
             }
         }
-
+        // Let the player insert their name if qualified for highscore list
         public void ReadAlias()
         {
             bool nameExists = true;
@@ -172,7 +154,6 @@ namespace FlappyBird
                         Console.Write("Name already exists or input is empty. Try again.");
                         Console.ReadKey();
                         Console.Write("                                                ");
-
                     }
                     else
                     {
@@ -181,12 +162,12 @@ namespace FlappyBird
                 }
                 catch
                 {
-
                     Console.WriteLine("Problem with input. Try again: ");
                 }
             }
         }
-
+        // Check if player is qualified for top 5. Different text output depending on place in list
+        // Save player to dictionary
         public void CheckTopHighScore()
         {
             string loser = @"
@@ -225,7 +206,6 @@ namespace FlappyBird
                     TopHighScoreCount = keyVal.Value;
                 }
             }
-
             if (Score < TopHighScoreCount)
             {
                 Console.WriteLine("\n" + loser);
@@ -236,7 +216,6 @@ namespace FlappyBird
             {
                 Console.WriteLine(scoreExist);
             }
-
             else
             {
                 if (Score > savedHighScore.Values.Max())
@@ -252,7 +231,6 @@ namespace FlappyBird
                         if (Score > keyVal.Value && savedHighScore.Count() >=5 || keyVal.Value == 0)
                         {
                             savedHighScore.Remove(keyVal.Key);
-                            //savedHighScore.Add(Name, Score);
                         }
                     }
                 }
@@ -264,7 +242,6 @@ namespace FlappyBird
                         if (Score > keyVal.Value && savedHighScore.Count() >= 5 || keyVal.Value == 0)
                         {
                             savedHighScore.Remove(keyVal.Key);
-                            //savedHighScore.Add(Name, Score);
                         }
                     }
                 }
@@ -273,7 +250,6 @@ namespace FlappyBird
                 Score = 0;
             }
             Console.ReadKey();
-
         }
     }
 }
