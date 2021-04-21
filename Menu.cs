@@ -51,7 +51,6 @@ namespace FlappyBird
             return option;
         }
 
-
         //Printing out "logo"
         public void PrintFlappyBird()
         {
@@ -82,7 +81,6 @@ namespace FlappyBird
                 Console.WriteLine(bird[i]);
             }
             Console.WriteLine();
-
         }
 
     }

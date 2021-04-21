@@ -50,8 +50,6 @@ namespace FlappyBird
             }
             else
                 Console.WriteLine(@"\\?//");
-
-        }
-       
+        }     
     }
 }

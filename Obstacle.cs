@@ -26,6 +26,5 @@ namespace FlappyBird
             int defaultWidth = 6;
             return defaultWidth;
         }
-    }
-    
+    }  
 }

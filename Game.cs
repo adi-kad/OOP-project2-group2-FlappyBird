@@ -157,5 +157,4 @@ namespace FlappyBird
             consoleKey = ConsoleKey.A; // Resetting console key
         }
     }
-
 }
