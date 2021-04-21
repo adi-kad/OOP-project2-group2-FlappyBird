@@ -38,7 +38,6 @@ namespace FlappyBird
         {
             Console.Clear();
             CheckKeyPress();
-
             board.DrawBoard(highScore);
             board.Draw(bird);
             board.Draw(obstacles);
@@ -55,7 +54,23 @@ namespace FlappyBird
                     GameOver();
                 }
             }
-            Thread.Sleep(100);
+            // higher speed if you get longer in the game
+            if (highScore.Score < 10)
+            {
+                Thread.Sleep(100);
+            }
+            else if (highScore.Score < 20)
+            {
+                Thread.Sleep(80);
+            }
+            else if (highScore.Score < 50)
+            {
+                Thread.Sleep(50);
+            }
+            else
+            {
+                Thread.Sleep(30);
+            }
             if (isPaused)
             {
                 board.DrawPaused();

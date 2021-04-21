@@ -12,8 +12,8 @@ namespace FlappyBird
         public int Score { get; set; }
         protected Dictionary<string, int> savedHighScore = new Dictionary<string, int>();
         private string filePath;
-
-        private int TopHighScoreCount => 1;
+        private int TopHighScoreCount = 0;
+        private int min;
         public HighScore()
         {
             Score = 0;
@@ -210,7 +210,14 @@ namespace FlappyBird
                                        SORRY! 
                                 SCORE ALREADY TAKEN";
 
-
+            min = savedHighScore.Min(m => m.Value);
+            foreach (KeyValuePair<string, int> keyVal in savedHighScore)
+            {
+                if (min == keyVal.Value)
+                {
+                    TopHighScoreCount = keyVal.Value;
+                }
+            }
 
             if (Score < TopHighScoreCount)
             {
@@ -256,7 +263,6 @@ namespace FlappyBird
                 savedHighScore.Add(Name, Score);
                 Score = 0;
             }
-
             Console.ReadKey();
         }
     }
