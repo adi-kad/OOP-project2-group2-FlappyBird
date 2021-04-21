@@ -1,5 +1,151 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLSpecialState</id><coordinates><x>180</x><y>110</y><w>20</w><h>20</h></coordinates><panel_attributes>type=initial</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>120</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLSpecialState</id><coordinates><x>300</x><y>210</y><w>40</w><h>40</h></coordinates><panel_attributes>type=decision</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>40</x><y>60</y><w>550</w><h>390</h></coordinates><panel_attributes>Player
-valign=top</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLObject</id><coordinates><x>590</x><y>60</y><w>400</w><h>390</h></coordinates><panel_attributes>Game
-valign=top</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>220</y><w>420</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m2=If keypress</panel_attributes><additional_attributes>400;10;10;10</additional_attributes></element><element><id>UMLState</id><coordinates><x>140</x><y>210</y><w>100</w><h>40</h></coordinates><panel_attributes>Bird Action</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>220</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>70;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>130</y><w>730</w><h>230</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;120;10;210;710;210;710;10;650;10</additional_attributes></element><element><id>UMLState</id><coordinates><x>730</x><y>210</y><w>100</w><h>40</h></coordinates><panel_attributes>Bird Jumping Up</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>130</y><w>440</w><h>100</h></coordinates><panel_attributes>lt=&lt;-
-m2= If key not pressed</panel_attributes><additional_attributes>420;10;10;10;10;80</additional_attributes></element><element><id>UMLState</id><coordinates><x>730</x><y>120</y><w>100</w><h>40</h></coordinates><panel_attributes>Bird Falling Down</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>240</y><w>620</w><h>120</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;100;600;100;600;10</additional_attributes></element></diagram>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>180</x>
+      <y>110</y>
+      <w>20</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>120</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>300</x>
+      <y>210</y>
+      <w>40</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>40</x>
+      <y>60</y>
+      <w>550</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>Player
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>590</x>
+      <y>60</y>
+      <w>400</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>Game
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>220</y>
+      <w>420</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=If keypress</panel_attributes>
+    <additional_attributes>400.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>140</x>
+      <y>210</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Bird Action</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>230</x>
+      <y>220</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>130</y>
+      <w>730</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;210.0;710.0;210.0;710.0;10.0;650.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>730</x>
+      <y>210</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Bird Jumping Up</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>130</y>
+      <w>410</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2= If key not pressed</panel_attributes>
+    <additional_attributes>390.0;10.0;10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>700</x>
+      <y>120</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Bird Falling Down</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>240</y>
+      <w>620</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;600.0;100.0;600.0;10.0</additional_attributes>
+  </element>
+</diagram>
