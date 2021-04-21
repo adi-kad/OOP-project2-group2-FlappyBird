@@ -27,7 +27,7 @@ namespace FlappyBird
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
-                // Sets a default obstacle width for the in/out fading of obstacles
+                // Sets a default obstacle width for the in-fade of obstacles
                 defaultObsWidth = obstacles[i].SetObstacleWidth();
                 if (obstacles[i].xpos == 0)
                 {
@@ -91,13 +91,9 @@ namespace FlappyBird
 
             for (int i = 0; i < width; i++)
             {
-                //Console.BackgroundColor = ConsoleColor.Green;
-
                 Console.SetCursorPosition(i, height);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("/");
-                //Console.ForegroundColor = ConsoleColor.White;
-                //Console.BackgroundColor = ConsoleColor.Blue;
             }
             Console.SetCursorPosition(width / 2 - 10, height + 2);
             Console.ForegroundColor = ConsoleColor.White;
