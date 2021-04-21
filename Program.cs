@@ -28,7 +28,7 @@ namespace FlappyBird
                 {                  
                     game.SetUp();
 
-                    while (!game.isOver/*is.Exited*/)
+                    while (!game.isOver)
                     {
                         game.Run();
                     }

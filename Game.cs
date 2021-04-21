@@ -83,7 +83,6 @@ namespace FlappyBird
         {
             board.DrawCollision();
             isOver = true;
-            //Console.ReadKey();
         }
 
         //Moving obstacle to the left
