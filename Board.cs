@@ -5,33 +5,29 @@ namespace FlappyBird
 {
     class Board : Game, IDimensions
     {
-
         public int height { get; set; }
-        //public int Height { get { return height; } }
         public int width { get; set; } = Console.WindowWidth;
-        
         int defaultObsWidth = 0;
         public Board()
         {
             this.height = 25;
-            
         }
-
         public Board(int height, int width)
         {
             this.height = height;
             this.width = width;
         }
-
+        //Prints bird at the updated position
         public void Draw(Bird bird)
         {
             bird.DrawBird();
         }
-
+        // Prints the obstacles
         public void Draw(Obstacle[] obstacles)
         {
             for (int i = 0; i < obstacles.Length; i++)
             {
+                // Sets a default obstacle width for the in/out fading of obstacles
                 defaultObsWidth = obstacles[i].SetObstacleWidth();
                 if (obstacles[i].xpos == 0)
                 {
@@ -41,10 +37,12 @@ namespace FlappyBird
                     obstacles[i].obsFloor = obstacles[i].height + obstacles[i].gate;
                     obstacles[i].width = 1;
                 }
+                // Fade out obstacle
                 else if (obstacles[i].xpos <= obstacles[i].width)
                 {
                     obstacles[i].width--;
                 }
+                // Fade in obstacle
                 else if (obstacles[i].xpos >= width - defaultObsWidth)
                 {
                     obstacles[i].width++;
@@ -82,6 +80,7 @@ namespace FlappyBird
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
         }
+        //Print roof and floor
         public void DrawBoard(HighScore highScore)
         {
             for (int i = 0; i < width; i++)
