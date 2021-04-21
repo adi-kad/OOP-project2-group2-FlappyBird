@@ -113,7 +113,7 @@ namespace FlappyBird
                 else
                     return false;
             }
-            else if (bird.Y == 0 || bird.Y == board.Height)
+            else if (bird.Y == 0 || bird.Y == board.height)
             {
                 return true;
             }

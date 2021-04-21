@@ -3,16 +3,18 @@ using System.Linq;
 using System.Collections;
 namespace FlappyBird
 {
-    class Board : Game
+    class Board : Game, IDimensions
     {
 
-        private int height;
-        public int Height { get { return height; } }
-        private int width = Console.WindowWidth;
+        public int height { get; set; }
+        //public int Height { get { return height; } }
+        public int width { get; set; } = Console.WindowWidth;
+        
         int defaultObsWidth = 0;
         public Board()
         {
             this.height = 25;
+            
         }
 
         public Board(int height, int width)
